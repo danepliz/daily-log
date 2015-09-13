@@ -1,0 +1,432 @@
+.clear{
+    clear: both;
+}
+
+section.content{
+    min-height: 400px;
+    width: 100%;
+    font-size: 100%;
+    float: left;
+}
+
+.box{
+    padding-bottom: 2rem;
+}
+
+.action-icon{
+    margin-right: 0.5rem;
+}
+
+.alert{
+    margin-top:1.5em;
+    margin-bottom: 0em;
+    margin-right: 15px;
+}
+
+.status-desc{
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+/*.form-control:not(.email){*/
+    /*text-transform: uppercase;*/
+/*}*/
+
+.form-group, .form-group-sm{
+    margin-bottom: 1.5rem;
+    padding: 0 0 0 0.5rem;
+}
+
+.btn-tour {
+    margin-top: 22px;
+}
+
+.btn-activity{
+    padding-left: 15px;
+    margin-top: -12px;
+}
+
+
+.btn-rate{
+    margin-right:0px;
+    float: right;
+    padding-right: 0;
+
+
+}
+
+.form-group-sm em.required, .form-group em.required{
+    color: #900;
+}
+
+.form-group-sm span.error, .form-group span.error{
+    color: #900;
+}
+
+.form-group label, .form-group-sm label{
+    font-weight: bold;
+    font-size: 90%;
+    color: #333;
+}
+
+.form-group-sm textarea{
+    min-height: 8rem;
+}
+
+.form-group input, .form-group textarea, .form-group select{
+    color: #666;
+}
+
+.form-group .select2-selection, .form-group-sm .select2-selection{
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-color: #CCC;
+    height: 100%;
+    width: 100%;
+    float:left;
+    color: #666 !important;
+    /*padding-top: 5px;*/
+}
+
+.form-group .select2-selection__rendered{
+    color: #666 !important;
+    padding-top: 4px;
+    width:100%;
+}
+
+.form-group-sm .select2-selection__rendered{
+    color: #666 !important;
+    /*float:left;*/
+    padding-top: 0px;
+    width:100%;
+}
+
+/*.font-small{*/
+    /*font-size: 90%;*/
+/*}*/
+
+
+.sheepit_template{
+    background: #EFEFEF;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    float: left;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.t-red{
+    color: #900;
+}
+
+.border-bottom{
+    border-bottom: 1px #CCC solid;
+}
+
+.border-top{
+    border-top: 1px #CCC solid;
+}
+
+.padding-top{
+    padding-top: 1rem;
+}
+
+.label-left dt{
+    text-align: left;
+}
+
+.label-left dt, .label-left dd{
+    margin-bottom: 1rem;
+}
+
+.sheepit_template .fa-times{
+    color: #900;
+}
+
+.sheepit_template .sheepit_template_input_wrapper{
+    margin-bottom: 1rem;
+    float: left;
+    width: 100%;
+}
+
+label.error, span.error{
+    color: #900;
+}
+.pagination{
+    margin: 0;
+}
+
+.modal-xlg{
+    width: 90%;
+}
+
+/*.sheepit_template label{*/
+    /*color: #555;*/
+    /*font-weight: normal;*/
+/*}*/
+
+.detail-page tr td.text-bold, .detail-page tr th{
+    font-size: 90%;
+    width: 30%;
+    /*text-transform: uppercase;*/
+}
+
+.detail-page tr td:not(.email){
+    /*text-transform: uppercase;*/
+}
+
+.ms-container{
+    font-size: 80%;
+    background-position: 48% 83px;
+}
+
+.ms-container .ms-selectable, .ms-container .ms-selection{
+    width: 42%;
+}
+
+.ms-container ul.ms-list{
+    width: 100%;
+}
+
+
+.tab-pane{
+    float:left;
+    width: 100%;
+    padding-top: 2rem;
+    min-height: 20rem;
+    background: #FFF;
+}
+
+.input-group{
+    margin-bottom: 1rem;
+}
+
+.input-group span.input-group-addon{
+    /*width: 20%;*/
+}
+
+
+table tr td.cell-label{
+    text-align: right;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 90%;
+    color: #333;
+}
+
+.sep{
+    width: 100%;
+    height: 0px;
+    clear: both;
+    border-bottom: 1px #CCC dotted;
+    margin: 1rem 0;
+}
+
+.rates-table table{
+    background: #f0f0f0;
+}
+
+.rates-table table tr td, .rates-table table tr th {
+    text-align: center;
+    vertical-align: middle;
+    border-color: #999;
+}
+
+.rates-table table tr th.rate-hotel-name{
+    background: #94b8e1;
+    color: #FFF;
+}
+
+.rates-table table tr th.rate-hotel-market{
+    background: #D0E0F2;
+}
+
+#xo{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    background: #efefef;
+    padding-top: 1rem;
+}
+
+#xo .row{
+    margin: 0;
+}
+
+.hotelActivityWrapper{
+    background: #FEFEFE;
+    margin-bottom: 1rem !important;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    position: relative;
+}
+
+.hotelActivityWrapper .remove_rate{
+    position: absolute;
+    top: -4rem;
+    right: 1rem;
+}
+
+.hotelActivityWrapper .no-margin{
+    padding:0 0 0 3px !important;
+}
+
+.hotelActivityWrapper .checkbox label{
+    font-weight: normal;
+}
+
+.specialAmountWrapper{
+    /*margin-top:1rem !important;*/
+    /*padding: 1rem;*/
+    /*background: azure;*/
+}
+
+.desc-block{
+    /*width: 100%;*/
+    /*float: left;*/
+    /*clear: both;*/
+    background: #f7f7f7;
+    margin-bottom: 0.3rem;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+
+.desc-block label{
+    width: 15rem;
+    padding: .4rem 1rem;
+    background: #E8E8E8;
+    margin-right: 1.1rem;
+    color: #000;
+    margin-bottom: 0px;
+    font-weight: normal;
+}
+
+.margin-bottom{
+    margin-bottom: 0.4rem;
+}
+
+.bg-white{
+    background: #FFF;
+}
+
+.print tr td{
+    padding: 0.3rem 0.8rem !important;
+}
+
+#noty_top_layout_container{
+    position: absolute !important;
+    margin-top: 20px;
+}
+
+#noty_top_layout_container li{
+    background: #444 !important;
+    color: #FFD700 !important;
+
+}
+
+#hotelActivityForm #activity{
+    background: #EDEDED;
+    padding: 1rem;
+}
+
+#hotelActivityForm .hotelActivityWrapper{
+    background: #DFDFDF;
+}
+
+tr.closed {
+    background: #f5a9a4;
+}
+
+tr.suspended{
+    background: #adc7cc;
+}
+
+tr.closed td {
+    color: #fff;
+}
+
+td.stampholder{
+    position:relative;
+    width:100%;
+    height:100%;
+}
+
+/*img.stamp{*/
+    /*position:absolute;*/
+    /*left: 45%;*/
+    /*top: 10%;*/
+    /*opacity:0.3;*/
+    /*-webkit-transform: rotate(-30deg);*/
+    /*-moz-transform: rotate(-30deg);*/
+    /*-o-transform: rotate(-30deg);*/
+    /*-ms-transform: rotate(-30deg);*/
+    /*width: 12rem; }*/
+img.stamp {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    opacity: 0.6;
+    -webkit-transform: rotate(-30deg);
+    -moz-transform: rotate(-30deg);
+    -o-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+    width:20rem;
+}
+
+div#hotelService, div.noDis{display:none;}
+div.disBlock{display:block;}
+.marginbottom{margin-bottom: 1.2em}
+
+
+.templateWrapper{
+    background: #F2F2F2;
+    margin-bottom: 1rem;
+    padding: 2rem 1rem 1rem;
+    border-radius: 1rem;
+}
+
+.templateWrapper table{
+    border: none;
+}
+
+.templateWrapper table tr td{
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.bg-none{
+    background: none !important;
+}
+/*.select2-container{width:275px!important;}*/
+
+
+.ui-datepicker{
+    z-index: 999 !important;
+}
+
+.ui-datepicker-month, .ui-datepicker-year{
+    color: #444;
+    font-weight: normal;
+    font-size: 13px !important;
+}
+
+.ui-datepicker-calendar{
+    font-size: 10px !important;
+}
+
+.ui-datepicker-calendar td{
+    padding: 0px;
+}
+
+.ui-datepicker-calendar td a{
+
+}
+
+.bg-void{
+    background: #f0e3aa !important;
+}
+
+.bg-deleted{
+    background: #f09a8d !important;
+}

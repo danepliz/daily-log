@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yarsha Reservation System</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body id="loginPage">
+<div class="container">
+    <div class="loginWrapper">
+        <div class="col-md-5 col-sm-5">
+            <div class="forgetFormWrapper">
+                <h2>Login</h2>
+
+                <div class="forgetForm">
+                    <div class="col-md-2 col-sm-2 hidden-xs">
+                        <div class="row">
+                        <img src="images/password.png" class="img-responsive" alt="lock icon">
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-sm-10">
+                        <form class="loginForgotForm">
+                            <div class="form-group">
+                                <label for="username-email">FORGOT PASSWORD</label>
+                                <input value='' id="username-email" placeholder="Enter Email Address" type="text"
+                                       class="form-control"/>
+                            </div>
+                            <div class="form-group text-center">
+                                <input type="submit" class="btn btn-login-submit" value="Submit"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <p>Developed by: <a href="#">Yarsha Studio</a> </p>
+            </div>
+        </div>
+        <div class="col-md-7 col-sm-7">
+            <div class="formLoginWrapper">
+                <div class="col-md-12 col-sm-12">
+                    <img src="images/innerlogo.png" class="img-responsive" alt="inner logo">
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <form class="yarsha_loginForm" action="" autocomplete="off" method="POST">
+                        <div class="input-group form-input-group">
+                            <span class="input-group-addon form-addon"><img src="images/user.png" class="img-responsive" alt="login user"> </span>
+                            <input type="text" class="form-control" name="username" placeholder="Username">
+                        </div>
+                        <span class="help-block"></span>
+
+                        <div class="input-group form-input-group">
+                            <span class="input-group-addon form-addon"><img src="images/key.png" class="img-responsive" alt="key user"></span>
+                            <input  type="password" class="form-control" name="password" placeholder="Password">
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <label class="checkbox">
+                                <input type="checkbox" value="remember-me">Remember Me
+                            </label>
+                        </div>
+                        <span class="help-block errorMsg">Please at least type right password :D</span>
+
+                        <button class="btn btn-block btn-login-submit btn-login" type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="formShadow"></div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

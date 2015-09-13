@@ -1,0 +1,39 @@
+{
+    "name": "KTM-Express",
+    "description": "Trip Reservation system",
+    "require": {
+        "php": ">=5.3.2",
+		"doctrine/orm": "2.2.2",
+		"gedmo/doctrine-extensions": "2.3.0",
+		"symfony/event-dispatcher": "2.3.*@dev",
+		"symfony/console": "2.3.*@dev",
+    	"yarsha/migrations": "dev-master",
+    	"yarsha/data-fixtures": "1.0.*",
+    	"simplethings/entity-audit-bundle": "dev-master",
+        "jms/serializer": "dev-master",
+        "filp/whoops": "1.*"
+    },
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@git.yarshastudio.com:yarsha/data-fixtures.git"
+        },
+        {
+            "type": "git",
+            "url": "git@git.yarshastudio.com:yarsha/migrations.git"
+        },
+        {
+            "type": "git",
+            "url": "git@git.yarshastudio.com:yarsha/entity-audit-bundle.git"
+        }
+    ],
+    "config": {
+		"preferred-install": "dist"
+    },
+    "autoload": {
+        "psr-0": {
+        	"DataFixtures": "db"
+        }
+    }
+}

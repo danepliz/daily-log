@@ -1,0 +1,17 @@
+/*@media print {*/
+    /*.print {*/
+        /*font-family: arial, sans-serif;*/
+        /*font-size: 14px;*/
+        /*color: blue;*/
+        /*width: 100%;*/
+        /*border: none;*/
+    /*}*/
+
+    /*.break{*/
+        /*page-break-after: always;*/
+    /*}*/
+
+    /*body:not('.print'){*/
+        /*display:none;*/
+    /*}*/
+/*}*/
