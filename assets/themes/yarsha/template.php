@@ -8,6 +8,7 @@ function tb_getBrandBar(){
 	CI::$APP->load->theme('common/brand');
 }
 
-function tb_getMainNav(){
-	CI::$APP->load->theme('common/mainnav');
+
+function getAdminMenu(){
+    CI::$APP->load->theme('common/mainnav');
 }
