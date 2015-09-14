@@ -45,17 +45,7 @@ class User
     private $fullname;
 
     /**
-     * @ORM\ManyToOne(targetEntity="location\models\Country")
-     */
-    private $country;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $city;
-    
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $address;
     
@@ -131,11 +121,6 @@ class User
      */
     private $tokenUsed;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="branch\models\Branch")
-     */
-    private $branch;
-
 
     public static $user_status = array(
         self::USER_STATUS_ACTIVE => 'Active',
@@ -205,24 +190,6 @@ class User
 	{
 	    $this->address = $address;
 	}
-	
-	public function getCity()
-	{
-		return $this->city;
-	}
-	
-	public function setCity($city)
-	{
-		$this->city = $city;
-	}
-
-    public function getCountry(){
-        return $this->country;
-    }
-
-    public function setCountry($country){
-        $this->country = $country;
-    }
 
 	public function getPhone()
 	{
@@ -361,14 +328,6 @@ class User
     public function setTokenUsed($tokenUsed)
     {
         $this->tokenUsed = $tokenUsed;
-    }
-
-    public function getBranch(){
-        return $this->branch;
-    }
-
-    public function setBranch($branch){
-        $this->branch = $branch;
     }
 
 }

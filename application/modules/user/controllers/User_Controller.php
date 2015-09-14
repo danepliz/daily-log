@@ -11,7 +11,7 @@ class User_Controller extends Admin_Controller
         $this->mainmenu = MAINMENU_USER;
         parent::__construct();
 
-        $this->load->helper(array('location/country', 'user/user', 'security'));
+        $this->load->helper(array( 'user/user', 'security'));
         $this->load->library('form_validation');
         if (strpos(current_url(), 'changepwd') !== FALSE or strpos(current_url(), 'profile') !== FALSE) $this->breadcrumb->append_crumb('My Account', 'javascript:;');
 
