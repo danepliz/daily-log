@@ -3,9 +3,10 @@
 ?>
 <div class="row">
 
-    <div class="col-xs-12 btn-margin">
-        <a href="javascript:void(0)" class="btn btn-primary" id="add-user-group-btn" >Add New User Group</a>
-    </div>
+    <?php
+    $buttons[] = [ 'type' => 'add', 'others' => 'id="add-user-group-btn"' ];
+    echo actionWrapper($buttons);
+    ?>
 
     <div class="col-xs-12" id="add-user-group-form-wrapper" style="display: none">
         <div class="panel panel-default">

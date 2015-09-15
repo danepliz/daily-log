@@ -6362,6 +6362,14 @@ COMMON
     margin-right: 0.5em;
 }
 
+.action-wrapper{
+    text-align: right;
+}
+
+.action-wrapper a i{
+    margin-right: 1em;
+}
+
 
 /* =====================================
 PANEL
@@ -6369,6 +6377,41 @@ PANEL
 .panel .panel-heading{
     color: #2A3F54 !important;
 }
+
+.tab-content{
+    padding-top: 2em;
+    background: #FFF;
+    float: left;
+    width: 100%;
+    border: 1px solid #CCC;
+}
+
+.nav-tabs {
+    border-bottom: none !important;
+}
+
+.nav-tabs>li {
+    margin-bottom: 0;
+}
+
+.nav-tabs>li a{
+    border: 1px solid #ccc;
+    border-bottom: none !important;
+    background: #eaeaea;
+}
+
+.nav-tabs>li a:hover, .nav-tabs>li.active a:hover{
+    border: 1px solid #ccc;
+    border-bottom: none !important;
+    background: #FFF;
+}
+
+.nav-tabs li.active a{
+    border: 1px solid #ccc;
+    border-bottom: none !important;
+    margin-bottom:-1px;
+}
+
 
 
 

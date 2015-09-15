@@ -287,5 +287,69 @@ function alertBox($message = "", $type = "success", $dismiss = FALSE){
     return $out;
 }
 
+/**
+ * @array $buttons ['type'=>'type of button', 'link' => 'link','others' =>'string']
+ */
+function actionWrapper($buttons){
+
+    $output = '<div class="col-xs-12 action-wrapper">';
+
+    if(count($buttons)){
+        foreach($buttons as $b){
+
+            $link = ( isset($b['link']) and $b['link'] != '' )? $b['link'] : '#';
+
+            $others = ( isset($b['others']) and $b['others'] != '' )? $b['others'] : '';
+
+            $type = getClassByButtonType($b['type']);
+            $label = $type['label'];
+            $iconClass = $type['class'];
+
+            $output .= "<a href=\"{$link}\" class=\"btn btn-default\" {$others} ><i class=\"fa {$iconClass} \"></i>{$label}</a>";
+        }
+    }
+
+
+
+
+    $output .= '</div>';
+
+    return $output;
+}
+
+function getClassByButtonType($type){
+    switch($type){
+        case 'add':
+            $class = 'fa-plus-circle';
+            $label = 'Add New';
+            break;
+        case 'delete':
+            $class = 'fa-minus-circle';
+            $label = 'Delete';
+            break;
+        case 'edit':
+            $class = 'fa-pencil-square';
+            $label = 'Edit';
+            break;
+        case 'cancel':
+            $class = 'fa-times-circle';
+            $label = 'Cancel';
+            break;
+        case 'back':
+            $class = 'fa-chevron-circle-left';
+            $label = 'Back';
+            break;
+        default:
+            $class = 'fa-circle';
+            $label = 'Button';
+            break;
+    }
+
+    return [
+        'label'=> $label,
+        'class' => $class
+    ];
+}
+
 
 

@@ -27,6 +27,12 @@ if (is_numeric($main_user = $CI->session->userdata('main_user'))) {
 ?>
 
 <div class="row">
+
+    <?php
+    $buttons[] = [ 'type' => 'add', 'link' => site_url('user/add'), 'others' => 'id="add-user-btn"' ];
+    echo actionWrapper($buttons);
+    ?>
+
     <div class="col-md-12">
         <div class="panel panel-default">
             <?php if(isset($users) && count($users)>0){ ?>

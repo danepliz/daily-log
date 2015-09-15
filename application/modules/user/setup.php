@@ -31,16 +31,16 @@ $listUserMenu->setPermissions(array(
 $listUserMenu->setRoute(site_url('user'));
 \MainMenu::register($listUserMenu);
 
-$AddUserMenu = new MainMenuItem();
-$AddUserMenu->setName('Add User');
-$AddUserMenu->setId('MM_USER_ADD');
-$AddUserMenu->setParent($userMenu);
-$AddUserMenu->setIcon('fa-plus-square');
-$AddUserMenu->setPermissions(array(
-    'add user',
-));
-$AddUserMenu->setRoute(site_url('user/add'));
-\MainMenu::register($AddUserMenu);
+//$AddUserMenu = new MainMenuItem();
+//$AddUserMenu->setName('Add User');
+//$AddUserMenu->setId('MM_USER_ADD');
+//$AddUserMenu->setParent($userMenu);
+//$AddUserMenu->setIcon('fa-plus-square');
+//$AddUserMenu->setPermissions(array(
+//    'add user',
+//));
+//$AddUserMenu->setRoute(site_url('user/add'));
+//\MainMenu::register($AddUserMenu);
 
 
 if( Current_User::isSuperUser() ){

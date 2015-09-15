@@ -27,7 +27,7 @@ class Group_Controller extends Admin_Controller{
 
 		$this->templatedata['groups'] = $groups;
 		$this->templatedata['numusers'] = $numusers;
-        $this->templatedata['page_title'] = 'List Groups';
+        $this->templatedata['page_title'] = 'USER GROUPS';
 		$this->templatedata['maincontent'] = 'user/group/list';
 		$this->load->theme('master',$this->templatedata);
 	}
