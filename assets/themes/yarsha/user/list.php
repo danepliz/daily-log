@@ -1,4 +1,3 @@
-
 <?php
 use user\models\Group;
 use user\models\User;
@@ -29,7 +28,7 @@ if (is_numeric($main_user = $CI->session->userdata('main_user'))) {
 <div class="row">
 
     <?php
-    $buttons[] = [ 'type' => 'add', 'link' => site_url('user/add'), 'others' => 'id="add-user-btn"' ];
+    $buttons[] = [ 'type' => 'add', 'link' => site_url('user/add'), 'others' => 'id="add-user-btn"', 'permissions' => ['admininster user'] ];
     echo actionWrapper($buttons);
     ?>
 

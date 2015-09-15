@@ -288,7 +288,7 @@ function actionWrapper($buttons){
             $label = $type['label'];
             $iconClass = $type['class'];
 
-            if( isset($b['permissions']) and count($b['permissions']) and user_access_or($b['permissions']) ){
+            if( ! isset($b['permissions']) or ! count($b['permissions']) or user_access_or($b['permissions']) ){
                 $output .= "<a href=\"{$link}\" class=\"btn btn-default\" {$others} ><i class=\"fa {$iconClass} \"></i>{$label}</a>";
             }
 
