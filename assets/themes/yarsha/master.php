@@ -157,7 +157,7 @@
 
 
         <?php
-        if( isset($critical_alerts) || isset($feedback) || $validation_errors = validation_errors('<p>','</p>') ){ ?>
+        if( isset($error) || isset($critical_alerts) || isset($feedback) || $validation_errors = validation_errors('<p>','</p>') ){ ?>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
 
@@ -165,11 +165,7 @@
 
                 if(isset($critical_alerts)){
                     foreach($critical_alerts as $type => $msg){
-                        $output = '<div class="alert alert-warning alert-dismissable">';
-                        $output .= '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>';
-                        $output .= $msg;
-                        $output .= '</div>';
-                        echo $output;
+                        echo alertBox($msg, $type, TRUE);
                     }
                 }
 
@@ -177,23 +173,19 @@
                     foreach($feedback as $type => $messages){
                         if(count($messages) > 0){
                             $class = ($type == 'error')? 'danger' : $type;
-                            $output = '<div class="alert ff alert-'.$class.' alert-dismissable">';
-                            $output .= '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>';
-
+                            $output = '';
                             foreach($messages as $msg)
                                 $output .= '<p>'.$msg.'</p>';
-
-                            $output .= '</div>';
-                            echo $output;
+                            echo alertBox($output, $class, TRUE);
                         }
                     }
                 }
 
                 ?>
                 <?php
-                if($validation_errors = validation_errors('<p>','</p>'))
-                    echo '<div class="alert vv alert-danger alert-dismissable">'.$validation_errors.'</div>';
-                else echo "&nbsp;";
+                if($validation_errors = validation_errors('<p>','</p>')) echo alertBox($validation_errors, 'danger', TRUE);
+
+                if(isset($error) and $error != '' ) echo alertBox($error, 'danger', TRUE);
                 ?>
 
             </div>

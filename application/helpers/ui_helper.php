@@ -78,7 +78,7 @@ function inputWrapper($name, $label, $value = NULL, $attributes = NULL, $wrapper
 function textAreaWrapper($name, $label, $value = NULL, $attributes = NULL, $wrapperClass = ''){
     $out =  '<div class="form-group-sm '.$wrapperClass.'">';
     $out .= '<label for="'.$name.'">'.$label.'</label>';
-    $out .= '<textarea name="'.$name.'"  '.$attributes.' >'.$value.'</textarea>';
+    $out .= '<textarea name="'.$name.'"  '.$attributes.' cols="20" >'.$value.'</textarea>';
     $out .= '</div>';
 
     return  $out;
@@ -141,23 +141,6 @@ function getMonthDropDown($name,$selected=NULL,$attributes="")
         12 => 'december');
 
     echo form_dropdown($name,$months,$selected,$attributes);
-
-
-    /*** the current month ***/
-//    $selected = is_null($selected) ? date('n', time()) : $selected;
-//
-//    for ($i = 1; $i <= 12; $i++)
-//    {
-//        $month .= '<option value="'.$i.'"';
-////        if ($i == $selected)
-////        {
-////            $month .= ' selected';
-////        }
-//        /*** get the month ***/
-//        $month .= '>'.$months[$i].'</option>';
-//    }
-//    $month .= '</select>';
-//    return $month;
 }
 
 function getDayDropDown($name, $selected=NULL,$attributes="")
@@ -305,7 +288,10 @@ function actionWrapper($buttons){
             $label = $type['label'];
             $iconClass = $type['class'];
 
-            $output .= "<a href=\"{$link}\" class=\"btn btn-default\" {$others} ><i class=\"fa {$iconClass} \"></i>{$label}</a>";
+            if( isset($b['permissions']) and count($b['permissions']) and user_access_or($b['permissions']) ){
+                $output .= "<a href=\"{$link}\" class=\"btn btn-default\" {$others} ><i class=\"fa {$iconClass} \"></i>{$label}</a>";
+            }
+
         }
     }
 
@@ -349,6 +335,20 @@ function getClassByButtonType($type){
         'label'=> $label,
         'class' => $class
     ];
+}
+
+function panelWrapperOpen($class = 'col-md-12', $title = ''){
+    $out =  '<div class="'.$class.'"> <div class="panel panel-default">';
+    if( $title != '' ){
+        $out .= '<div class="panel-heading"><h3 class="panel-title">'.$title.'</h3></div>';
+    }
+    $out .= "<div class='panel-body'>";
+    return $out;
+
+}
+
+function panelWrapperClose(){
+    return "</div></div></div>";
 }
 
 

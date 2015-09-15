@@ -199,5 +199,32 @@ class Project
         return $this;
     }
 
+    public static function getStatusString($status){
+        switch($status){
+            case self::PROJECT_STATUS_ACTIVE :
+                $class = 'success';
+                $label = 'active';
+                break;
+            case self::PROJECT_STATUS_HANDLED :
+                $class = 'primary';
+                $label = 'handled';
+                break;
+            case self::PROJECT_STATUS_DELETED :
+                $class = 'danger';
+                $label = 'deleted';
+                break;
+            case self::PROJECT_STATUS_BLOCKED :
+                $class = 'warning';
+                $label = 'blocked';
+                break;
+            default :
+                $class = 'default';
+                $label = 'undefined';
+                break;
+        }
+
+        return "<span class='label label-{$class}'>{$label}</span>";
+    }
+
 
 }

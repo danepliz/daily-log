@@ -6431,3 +6431,11 @@ FORM
     border-radius: 0 !important;
     box-shadow: none !important;
 }
+
+em.required, .error{
+    color: #900;
+}
+
+textarea.form-control{
+    min-height: 5em;
+}

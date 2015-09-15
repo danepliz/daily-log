@@ -40,7 +40,7 @@ class ProjectMeta
     /**
      * @ORM\Column(type="boolean")
      */
-    private $show_to_all = TRUE;
+    private $show_to_all = FALSE;
 
 
     public function id()
