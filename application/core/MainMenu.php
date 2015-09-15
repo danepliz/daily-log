@@ -118,8 +118,68 @@ class MainMenu{
 	public static function render(){
 		return self::wrap(self::$registry);
 	}
-	
-	private static function wrap($source){
+
+
+    private static function wrap($source){
+
+        $output = '';
+
+        usort($source,array("MainMenu","_compare"));
+
+        $currentRoute = current_url();
+
+        foreach($source as $v){
+
+            $route = $v->getRoute();
+
+            $activeLink = ( $currentRoute == $v->getRoute() ) ? 'active' : '';
+
+            if(is_array($v->getPermissions())){
+                if (!user_access($v->getPermissions())) {
+
+                    if(count($v->getChildren()) > 0) {
+
+                        $all_child_accessible = FALSE;
+
+                        foreach ($v->getChildren() as $sv) {
+                            if (user_access($sv->getPermissions())) $all_child_accessible = TRUE;
+                        }
+
+                        if (!$all_child_accessible) continue;
+                        else $route = '#';
+
+                    } else continue;
+
+                }
+            }
+
+            $treeClass = "";
+            $pullDownSpan = "";
+            $subMenu = "";
+
+            $iconWrapper = $v->getParent() ? '' : '<i class="fa '.$v->getIcon().'"></i> ';
+
+            if( count($v->getChildren()) > 0 ){
+                $pullDownSpan = "<span class='fa fa-chevron-down'></span>";
+
+                $subMenu .= "<ul  class='nav child_menu style='display: none'>";
+                $subMenu .= self::wrap($v->getChildren());
+                $subMenu .= "</ul>";
+            }
+
+            $linkWrapper =  "<a href='{$route}'>{$iconWrapper} {$v->getName()} {$pullDownSpan}</a>";
+
+
+            $output .= "<li>";
+            $output .= $linkWrapper;
+            $output .= $subMenu;
+            $output .= "</li>";
+        }
+
+        return $output;
+    }
+
+	private static function wrap2($source){
 		
 		$output = '';
 		

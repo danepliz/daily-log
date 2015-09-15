@@ -12,7 +12,7 @@ $settingsMainMenu->setName('Settings');
 $settingsMainMenu->setId('MM_SETTINGS');
 $settingsMainMenu->setPermissions(array('general setting', 'user setting'));
 $settingsMainMenu->setRoute(site_url('config/settings'));
-$settingsMainMenu->setIcon('fa-gears');
+$settingsMainMenu->setIcon('fa-cogs');
 MainMenu::register($settingsMainMenu);
 
 
