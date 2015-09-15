@@ -6378,6 +6378,11 @@ PANEL
     color: #2A3F54 !important;
 }
 
+.x_title h2{
+    text-transform: uppercase;
+    font-size: 1.1em;
+}
+
 .tab-content{
     padding-top: 2em;
     background: #FFF;
@@ -6424,7 +6429,6 @@ FORM
 
 .form-group-sm label{
     font-weight: normal !important;
-    font-size: 95% !important;
 }
 
 .form-control{
@@ -6438,4 +6442,29 @@ em.required, .error{
 
 textarea.form-control{
     min-height: 5em;
+}
+
+input[type="checkbox"].form-control.simple{
+    width: 2em;
+    height: 2em;
+    margin: 0 1em;
+}
+
+
+
+/* =====================================
+SHEEPIT
+===================================== */
+.sheepit-table{
+    /*background: #F8F8F8;*/
+}
+
+.sheepit-table tr td{
+    padding:2px !important;
+    border: none !important;
+}
+
+.sheepit-table tr th{
+    /*background: #ECECEC !important;*/
+    padding:1em 0.5em !important;
 }

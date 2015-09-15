@@ -11,18 +11,25 @@ if( $project ){
 
 echo loadJS(['jquery.sheepit.min']);
 
-echo form_open('', 'method="post" class="validate" role="form"');
-echo panelWrapperOpen('col-md-12','', TRUE);
-echo inputWrapper('name', 'Project Name', $name, 'class="form-control required"','col-md-12');
-echo textAreaWrapper('description', 'Description', $description, 'class="form-control"','col-md-12');
+echo form_open('', 'method="post" class="form-horizontal form-label-left validate" role="form"');
+echo panelWrapperOpen('col-md-12','Information', TRUE);
+echo inputWrapper('name', 'Project Name', $name, 'class="form-control required"');
+echo textAreaWrapper('description', 'Description', $description, 'class="form-control"');
+echo panelWrapperClose();
+
+
+echo panelWrapperOpen('col-md-12','Project Meta', TRUE);
 
 ?>
 
 
-<div classs="col-md-12 form-group-sm">
-    <label>Meta</label>
 
-    <table class="table">
+
+
+
+<div classs="col-md-12 form-group-sm">
+
+    <table class="table sheepit-table">
         <tbody id="meta">
             <tr>
                 <th>Key</th>
@@ -34,7 +41,7 @@ echo textAreaWrapper('description', 'Description', $description, 'class="form-co
             <tr id="meta_template">
                 <td><input type="text" name="meta[#index#][key]" class="form-control" /></td>
                 <td><input type="text" name="meta[#index#][value]" class="form-control" /></td>
-                <td><input type="checkbox" name="meta[#index#][allow]" class="form-control simple" /></td>
+                <td><input type="checkbox" name="meta[#index#][allow]" class="form-control simple"/></td>
                 <td><a id="meta_remove_current"><i class="fa fa-trash"></i></a></td>
             </tr>
 
@@ -62,7 +69,7 @@ echo textAreaWrapper('description', 'Description', $description, 'class="form-co
             </tr>
 
             <tr id="meta_controls">
-                <td colspan="4" ><a class="btn btn-default" id="meta_add"><i class="fa fa-plus-square"></i></a></td>
+                <td colspan="4" ><a class="btn btn-default" id="meta_add"><i class="fa fa-plus-square"></i> add new meta</a></td>
             </tr>
 
         </tbody>
@@ -72,14 +79,20 @@ echo textAreaWrapper('description', 'Description', $description, 'class="form-co
 
 
 
-<div class="col-md-12">
-    <input type="submit" value="SUBMIT"  />
-</div>
+
 
 
 <?php
 
 echo panelWrapperClose();
+echo panelWrapperOpen(); ?>
+<div class="col-md-12">
+    <input type="submit" value="SUBMIT"  class="btn btn-default" />
+</div>
+
+<?
+echo panelWrapperClose();
+
 echo form_close();
 
 

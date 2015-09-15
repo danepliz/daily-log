@@ -30,6 +30,7 @@ if (is_numeric($main_user = $CI->session->userdata('main_user'))) {
     <?php
     $buttons[] = [ 'type' => 'add', 'link' => site_url('user/add'), 'others' => 'id="add-user-btn"', 'permissions' => ['admininster user'] ];
     echo actionWrapper($buttons);
+
     ?>
 
     <div class="col-md-12">

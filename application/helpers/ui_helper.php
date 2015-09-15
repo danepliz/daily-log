@@ -66,11 +66,17 @@ function no_results_found($message = ""){
     echo '<div class="alert alert-danger">'.$message.'</div>';
 }
 
-function inputWrapper($name, $label, $value = NULL, $attributes = NULL, $wrapperClass = ''){
+function inputWrapper($name, $label, $value = NULL, $attributes = NULL, $wrapperClass = '', $password = FALSE){
+    $type = ($password) ? 'password' : 'text';
     $out =  '<div class="form-group-sm '.$wrapperClass.'">';
     $out .= '<label for="'.$name.'">'.$label.'</label>';
-    $out .= '<input type="text" name="'.$name.'" value="'.$value.'" '.$attributes.' />';
+    $out .= '<input type="'.$type.'" name="'.$name.'" value="'.$value.'" '.$attributes.' />';
     $out .= '</div>';
+
+//    $out = '<div class="form-group"><label class="control-label col-md-3 col-sm-3 col-xs-12" for="'.$name.'">'.$label.'</label>';
+//    $out .= '<div class="col-md-6 col-sm-6 col-xs-12">';
+//    $out .= '<input type="text" class="form-control col-md-7 col-xs-12 required" name="'.$name.'" value="'.$value.'" '.$attributes.'>';
+//    $out .= '</div> </div>';
 
     return  $out;
 }
@@ -338,11 +344,11 @@ function getClassByButtonType($type){
 }
 
 function panelWrapperOpen($class = 'col-md-12', $title = ''){
-    $out =  '<div class="'.$class.'"> <div class="panel panel-default">';
-    if( $title != '' ){
-        $out .= '<div class="panel-heading"><h3 class="panel-title">'.$title.'</h3></div>';
+    $out =  '<div class="'.$class.' col-xs-12 "> <div class="x_panel">';
+    if( $title != ''){
+        $out .= '<div class="x_title"><h2>'.$title.'</h2><div class="clearfix"></div></div>';
     }
-    $out .= "<div class='panel-body'>";
+    $out .= "<div class='x_content'>";
     return $out;
 
 }
@@ -350,6 +356,47 @@ function panelWrapperOpen($class = 'col-md-12', $title = ''){
 function panelWrapperClose(){
     return "</div></div></div>";
 }
+
+function panelTitleActions($buttons){
+    $out = '<ul class="nav navbar-right panel_toolbox">';
+    if(count($buttons)){
+        foreach($buttons as $b){
+
+            $link = ( isset($b['link']) and $b['link'] != '' )? $b['link'] : '#';
+
+            $others = ( isset($b['others']) and $b['others'] != '' )? $b['others'] : '';
+
+            $type = getClassByButtonType($b['type']);
+            $label = $type['label'];
+            $iconClass = $type['class'];
+
+            if( ! isset($b['permissions']) or ! count($b['permissions']) or user_access_or($b['permissions']) ){
+                $out .= "<li><a href=\"{$link}\" class=\"btn btn-sm btn-default\" {$others} ><i class=\"fa {$iconClass} \"></i>{$label}</a></li>";
+            }
+
+        }
+    }
+    $out .= '</ul>';
+    return $out;
+
+//    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+//    </li>
+//    <li class="dropdown">
+//        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+//        <ul class="dropdown-menu" role="menu">
+//            <li><a href="#">Settings 1</a>
+//            </li>
+//            <li><a href="#">Settings 2</a>
+//            </li>
+//        </ul>
+//    </li>
+//    <li><a class="close-link"><i class="fa fa-close"></i></a>
+//    </li>
+}
+
+
+
+
 
 
 

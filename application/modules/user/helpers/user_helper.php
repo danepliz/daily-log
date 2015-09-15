@@ -117,7 +117,7 @@ function accessible_group_list($name, $selected = NULL, $attributes = NULL)
 		$groupOptions .= '<option value="'.$gr->id().'" data-mto="'.$gr->isMtoOnly().'" '.$sel.' > '.strtoupper($gr->getName()).' </option>';
 	}
 	
-	echo '<select name="'.$name.'" '.$attributes.' >'.$groupOptions.'</select>';
+	return '<select name="'.$name.'" '.$attributes.' >'.$groupOptions.'</select>';
 	
 }
 
