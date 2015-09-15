@@ -6343,3 +6343,48 @@ ul.notifications {
     float: right;
     opacity: 1;
 }
+
+
+/* =====================================
+COMMON
+===================================== */
+.breadcrumb{
+    margin:0 !important;
+    padding:0 !important;
+    float:right;
+}
+
+.page-title{
+    margin-bottom:4em;
+}
+
+.action-icon{
+    margin-right: 0.5em;
+}
+
+
+/* =====================================
+PANEL
+===================================== */
+.panel .panel-heading{
+    color: #2A3F54 !important;
+}
+
+
+
+/* =====================================
+FORM
+===================================== */
+.form-group-sm{
+    margin-bottom: 1em !important;
+}
+
+.form-group-sm label{
+    font-weight: normal !important;
+    font-size: 95% !important;
+}
+
+.form-control{
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}

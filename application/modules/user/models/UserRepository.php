@@ -12,19 +12,15 @@ class UserRepository extends EntityRepository{
 		
 		$qb = $this->_em->createQueryBuilder();
 		$qb->select(array('u.id as user_id', 'u.fullname','u.address',
-				'u.mobile','u.email','u.status','u.created','u.phone','u.city as city','cun.name as country',
+				'u.mobile','u.email','u.status','u.created','u.phone',
 				'gr.id as group_id','gr.name as groups' ))
 			->from('user\models\User','u')
 			->leftJoin('u.group','gr')
-			->leftJoin('u.country','cun')
 			->where('1=1')
 			->andWhere("u.status != 3");
 
 		if(is_array($filters) and count($filters) > 0)
 		{
-			if(isset($filters['country']) and $filters['country'] != ''){
-				$qb->andWhere('cun.id = :cid')->setParameter('cid', $filters['country']);
-			}
 			
 			if(isset($filters['full_name']) and $filters['full_name'] != ''){
 				$qb->andWhere('u.fullname LIKE :fn')->setParameter('fn', '%'.$filters['full_name'].'%');

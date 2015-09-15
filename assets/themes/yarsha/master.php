@@ -122,78 +122,7 @@
                     </ul>
                 </li>
 
-<!--                <li role="presentation" class="dropdown">-->
-<!--                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">-->
-<!--                        <i class="fa fa-envelope-o"></i>-->
-<!--                        <span class="badge bg-green">6</span>-->
-<!--                    </a>-->
-<!--                    <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">-->
-<!--                        <li>-->
-<!--                            <a>-->
-<!--                                            <span class="image">-->
-<!--                                        <img src="images/img.jpg" alt="Profile Image" />-->
-<!--                                    </span>-->
-<!--                                            <span>-->
-<!--                                        <span>John Smith</span>-->
-<!--                                            <span class="time">3 mins ago</span>-->
-<!--                                            </span>-->
-<!--                                            <span class="message">-->
-<!--                                        Film festivals used to be do-or-die moments for movie makers. They were where...-->
-<!--                                    </span>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a>-->
-<!--                                            <span class="image">-->
-<!--                                        <img src="images/img.jpg" alt="Profile Image" />-->
-<!--                                    </span>-->
-<!--                                            <span>-->
-<!--                                        <span>John Smith</span>-->
-<!--                                            <span class="time">3 mins ago</span>-->
-<!--                                            </span>-->
-<!--                                            <span class="message">-->
-<!--                                        Film festivals used to be do-or-die moments for movie makers. They were where...-->
-<!--                                    </span>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a>-->
-<!--                                            <span class="image">-->
-<!--                                        <img src="images/img.jpg" alt="Profile Image" />-->
-<!--                                    </span>-->
-<!--                                            <span>-->
-<!--                                        <span>John Smith</span>-->
-<!--                                            <span class="time">3 mins ago</span>-->
-<!--                                            </span>-->
-<!--                                            <span class="message">-->
-<!--                                        Film festivals used to be do-or-die moments for movie makers. They were where...-->
-<!--                                    </span>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a>-->
-<!--                                            <span class="image">-->
-<!--                                        <img src="images/img.jpg" alt="Profile Image" />-->
-<!--                                    </span>-->
-<!--                                            <span>-->
-<!--                                        <span>John Smith</span>-->
-<!--                                            <span class="time">3 mins ago</span>-->
-<!--                                            </span>-->
-<!--                                            <span class="message">-->
-<!--                                        Film festivals used to be do-or-die moments for movie makers. They were where...-->
-<!--                                    </span>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <div class="text-center">-->
-<!--                                <a>-->
-<!--                                    <strong>See All Alerts</strong>-->
-<!--                                    <i class="fa fa-angle-right"></i>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
+
 
             </ul>
         </nav>
@@ -213,7 +142,7 @@
             </div>
 
             <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right top_search">
                     <ol class="breadcrumb"> <?php echo $this->breadcrumb->output(); ?> </ol>
 <!--                    <div class="input-group">-->
 <!--                        <input type="text" class="form-control" placeholder="Search for...">-->
@@ -272,45 +201,23 @@
         <?php } ?>
 
 
-        <div class="row">
+        <div class="row main-container-wrapper">
 
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <?php if (isset($maincontent)) $this->load->theme($maincontent); ?>
-<!--                <div class="x_panel" style="height:600px;">-->
-<!--                    <div class="x_title">-->
-<!--                        <h2>Page Title</h2>-->
-<!---->
-<!--                        <ul class="nav navbar-right panel_toolbox">-->
-<!--                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>-->
-<!--                            </li>-->
-<!--                            <li class="dropdown">-->
-<!--                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>-->
-<!--                                <ul class="dropdown-menu" role="menu">-->
-<!--                                    <li><a href="#">Settings 1</a>-->
-<!--                                    </li>-->
-<!--                                    <li><a href="#">Settings 2</a>-->
-<!--                                    </li>-->
-<!--                                </ul>-->
-<!--                            </li>-->
-<!--                            <li><a class="close-link"><i class="fa fa-close"></i></a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                        <div class="clearfix"></div>-->
-<!--                    </div>-->
-<!--                </div>-->
             </div>
         </div>
     </div>
 
     <!-- footer content -->
-    <footer>
-        <div class="">
-            <p class="pull-right">Yarsha studio employee work log ! <a href="http://yarshastudio.com/">Yarsha Studio</a>. |
-                <span class="lead"> <i class="fa fa-paw"></i> Yarsha Studio!</span>
-            </p>
-        </div>
-        <div class="clearfix"></div>
-    </footer>
+<!--    <footer>-->
+<!--        <div class="">-->
+<!--            <p class="pull-right">Yarsha studio employee work log ! <a href="http://yarshastudio.com/">Yarsha Studio</a>. |-->
+<!--                <span class="lead"> <i class="fa fa-paw"></i> Yarsha Studio!</span>-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div class="clearfix"></div>-->
+<!--    </footer>-->
     <!-- /footer content -->
 
 </div>

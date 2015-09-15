@@ -275,3 +275,17 @@ function getDayDropDown($name, $selected=NULL,$attributes="")
  }
 
 
+
+function alertBox($message = "", $type = "success", $dismiss = FALSE){
+    $out = '<div class="alert alert-'.$type.'" style="margin:1em" >';
+    if( $dismiss ){
+        $out .= '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>';
+    }
+    $out .= $message;
+    $out .= '</div>';
+
+    return $out;
+}
+
+
+

@@ -5,7 +5,6 @@ use user\models\User;
 
 $currentUser = Current_User::user();
 $groupId = $currentUser->getGroup()->id();
-$currentUserCountry = $currentUser->getCountry();
 
 $fullName = isset($filters['fullName'])? $filters['fullName'] : '';
 $phone = isset($filters['phone'])? $filters['phone'] : '';
@@ -30,89 +29,81 @@ if (is_numeric($main_user = $CI->session->userdata('main_user'))) {
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title"><?php echo $page_title ?></h3></div>
-            <div class="panel-body">
-                <?php if(isset($users) && count($users)>0){ ?>
-                    <div class="table-responsive">
-                    <table class="table table-striped">
-                        <tbody>
+            <?php if(isset($users) && count($users)>0){ ?>
+                <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <th class="serial" width="3%">#</th>
+                        <th>FullName</th>
+                        <th>Email</th>
+                        <th>Group Name</th>
+                        <th>Address</th>
+                        <th width="12%" class="actions">Actions</th>
+                    </tr>
+                    <?php
+                    $count = isset($offset)?$offset+1:1;
+                    foreach($users as $u):
+
+                        $isUserActive = ( $u['status'] === User::USER_STATUS_ACTIVE );
+
+                        if($u['status'] != "1")
+                        {
+                            $bg = ' style="background-color: #FF5544;"';
+                            $inactiveUser = TRUE;
+                        }
+                        else
+                        {
+                            $bg = '';
+                            $inactiveUser = FALSE;
+                        }
+
+                        if( $inactiveUser == FALSE and $u['group_id'] == Group::SUPER_ADMIN ){ $bg = ' style="background-color: #D8EFCC;"'; }
+                        $canActOn = \Current_User::canActOn($u['user_id']);
+
+                        $isSuperAdmin = ( $u['group_id'] === Group::SUPER_ADMIN );
+
+                        ?>
                         <tr>
-                            <th class="serial" width="3%">#</th>
-                            <th>FullName</th>
-                            <th>Email</th>
-                            <th>Group Name</th>
-                            <th>Address</th>
-                            <th>Country</th>
-                            <th width="12%" class="actions">Actions</th>
+                            <td><?php echo $count++;  ?></td>
+                            <td><?php echo $u['fullname'];?></td>
+                            <td><?php echo $u['email'];?></td>
+                            <td><?php echo $u['groups'];?></td>
+                            <td><?php echo $u['address'];?></td>
+                            <td class="actions">
+                                <?php
+                                    if( ! $isSuperAdmin ){
+                                        if (user_access('reset password') and $u['status'] == User::USER_STATUS_ACTIVE) echo action_button('wrench','user/resetpwd/'.$u['user_id'],array('title'	=>	'Reset Password'));
+                                        if( user_access('administer user') ){
+                                            if($isUserActive){
+                                                echo action_button('edit','user/edit/'.$u['user_id'],array('title'	=>	'Edit '.$u['fullname']));
+
+                                                if( $u['user_id'] !== $currentUser->id() ){
+                                                    echo action_button('delete', '#', array('title' => 'Delete' .$u['fullname'],'data-bb' => 'custom_delete', 'data-id' => $u['user_id']));
+                                                    //echo action_button('delete','user/delete/'.$u['user_id'],array('title'	=>	'Delete '.$u['fullname'], 'class'=>'delete-user'));
+                                                    //echo action_button('block','user/block/'.$u['user_id'],array('title'  =>  'Block '.$u['fullname'], 'class'=>'block-user'));
+                                                    echo action_button('block','#', array('title'  =>  'Block '.$u['fullname'], 'data-bb' => 'custom_block', 'data-id' => $u['user_id']));
+                                                }
+                                            }
+                                            else {
+                                                //echo action_button('unblock','user/unblock/'.$u['user_id'],array('title'  =>  'Unblock '.$u['fullname'], 'class'=>'unblock-user'));
+                                                echo action_button('unblock','#', array('title'  =>  'Unblock '.$u['fullname'],'data-bb' => 'custom_unblock', 'data-id' => $u['user_id']));
+                                            }
+                                        }
+                                        if ($switch and user_access('allow user switching') and !$inactiveUser) {
+                                            echo action_button('switch','auth/switchuser/'.$u['user_id'],array('title'  =>  'Run Application as '.$u['fullname']));
+                                        }
+                                    }else{ echo action_button('help', '#', array('title' => 'Superadmin')); }
+                                ?>
+                            </td>
                         </tr>
-                        <?php
-                        $count = isset($offset)?$offset+1:1;
-                        foreach($users as $u):
+                    <?php  endforeach;?>
+                    </tbody>
+                </table>
+                </div>
+            <?php }else{ echo alertBox('Users Not Found.','warning'); } ?>
 
-                            $isUserActive = ( $u['status'] === User::USER_STATUS_ACTIVE );
-
-                            if($u['status'] != "1")
-                            {
-                                $bg = ' style="background-color: #FF5544;"';
-                                $inactiveUser = TRUE;
-                            }
-                            else
-                            {
-                                $bg = '';
-                                $inactiveUser = FALSE;
-                            }
-
-                            if( $inactiveUser == FALSE and $u['group_id'] == Group::SUPER_ADMIN ){ $bg = ' style="background-color: #D8EFCC;"'; }
-                            $canActOn = \Current_User::canActOn($u['user_id']);
-
-                            $isSuperAdmin = ( $u['group_id'] === Group::SUPER_ADMIN );
-                            $address = [ ];
-                            if( $u['city'] !== '' ){ $address[] = $u['city'];  }
-                            if( $u['address'] !== '' ){ $address[] = $u['address'];  }
-
-                            ?>
-                            <tr>
-                                <td><?php echo $count++;  ?></td>
-                                <td><?php echo $u['fullname'];?></td>
-                                <td><?php echo $u['email'];?></td>
-                                <td><?php echo $u['groups'];?></td>
-                                <td><?php echo implode(', ', $address )?></td>
-                                <td><?php echo $u['country'];?></td>
-                                <td class="actions">
-                                    <?php
-                                        if( ! $isSuperAdmin ){
-                                            if (user_access('reset password') and $u['status'] == User::USER_STATUS_ACTIVE) echo action_button('wrench','user/resetpwd/'.$u['user_id'],array('title'	=>	'Reset Password'));
-                                            if( user_access('administer user') ){
-                                                if($isUserActive){
-                                                    echo action_button('edit','user/edit/'.$u['user_id'],array('title'	=>	'Edit '.$u['fullname']));
-
-                                                    if( $u['user_id'] !== $currentUser->id() ){
-                                                        echo action_button('delete', '#', array('title' => 'Delete' .$u['fullname'],'data-bb' => 'custom_delete', 'data-id' => $u['user_id']));
-                                                        //echo action_button('delete','user/delete/'.$u['user_id'],array('title'	=>	'Delete '.$u['fullname'], 'class'=>'delete-user'));
-                                                        //echo action_button('block','user/block/'.$u['user_id'],array('title'  =>  'Block '.$u['fullname'], 'class'=>'block-user'));
-                                                        echo action_button('block','#', array('title'  =>  'Block '.$u['fullname'], 'data-bb' => 'custom_block', 'data-id' => $u['user_id']));
-                                                    }
-                                                }
-                                                else {
-                                                    //echo action_button('unblock','user/unblock/'.$u['user_id'],array('title'  =>  'Unblock '.$u['fullname'], 'class'=>'unblock-user'));
-                                                    echo action_button('unblock','#', array('title'  =>  'Unblock '.$u['fullname'],'data-bb' => 'custom_unblock', 'data-id' => $u['user_id']));
-                                                }
-                                            }
-                                            if ($switch and user_access('allow user switching') and !$inactiveUser) {
-                                                echo action_button('switch','auth/switchuser/'.$u['user_id'],array('title'  =>  'Run Application as '.$u['fullname']));
-                                            }
-                                        }else{ echo action_button('help', '#', array('title' => 'Superadmin')); }
-                                    ?>
-                                </td>
-                            </tr>
-                        <?php  endforeach;?>
-                        </tbody>
-                    </table>
-                    </div>
-                <?php }else{ no_results_found('Users Not Found.'); } ?>
-            </div>
-
-            <div class="panel-footer"><?php echo isset($pagination) ? $pagination : '' ?></div>
+            <?php echo isset($pagination) ? '<div class="panel-footer">'.$pagination.'</div>' : '' ?>
         </div>
     </div>
 </div>

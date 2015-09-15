@@ -6,7 +6,6 @@
             <?php if (user_access('general setting')) { ?><li role="presentation" class="active"><a href="#general" data-toggle="tab">General Settings</a></li><?php } ?>
             <?php if (user_access('user setting')) { ?><li role="presentation"><a href="#user-config" data-toggle="tab">User Settings</a></li><?php } ?>
             <?php if (Current_User::isSuperUser()) { ?><li role="presentation"><a href="#siteMaintenance" data-toggle="tab">Site Maintenance Settings</a></li><?php } ?>
-            <?php if (Current_User::isSuperUser()) { ?><li role="presentation"><a href="#tourFile" data-toggle="tab">Tour File Settings</a></li><?php } ?>
 
         </ul>
         <div class="tab-content">
@@ -29,14 +28,6 @@
                         <div class="form-group-sm">
                             <label for="config_accountemail">Account Email</label>
                             <input type="text" name="config_accountemail" id="config_accountemail" value="<?php echo Options::get('config_accountemail','');?>" class="required full email form-control" size="60" />
-                        </div>
-
-
-                        <div class="form-group-sm">
-                            <label for="config_currency">All Market Currency</label>
-                            <?php
-                            $currency=Options::get('config_market_currency','');
-                            getCurrencySelectElement('config_market_currency',  $currency,'class="form-control"') ?>
                         </div>
 
                         <div class="form-group-sm">
@@ -166,35 +157,6 @@
             </div><!-- maintenance -->
             <?php } ?>
 
-            <?php if (Current_User::isSuperUser()) { ?>
-                <div class="tab-pane" id="tourFile">
-                    <div class="col-md-12">
-                        <form class="" action="" method="post" id="tour-file-config-form">
-
-                            <div class="form-group-sm">
-                                <label for="config_tourfilel">TourFile Prefix</label>
-                                <input type="text" name="config_tourfile" id="config_tourfile" value="<?php echo Options::get('config_tourfile','YEPL');?>" class="required form-control" size="60" />
-                            </div>
-
-                            <div class="form-group-sm">
-                                <label for="config_extrabeds">Allow-Number Of Extra Beds</label>
-                                <input type="text" name="config_extrabeds" id="config_extrabeds" value="<?php echo Options::get('config_extrabeds','4');?>" class="required form-control" size="60" />
-                            </div>
-
-                            <div class="form-group-sm">
-                                <label for="config_revert_time_xo">Allowed Times To Revert Exchange Order</label>
-                                <input type="text" name="config_revert_time_xo" id="config_revert_time_xo" value="<?php echo Options::get('config_revert_time_xo', ALLOWED_XO_REVERT_TIME_DEFAULT);?>" class="required form-control" size="60" />
-                            </div>
-
-                            <div class="form-group-sm margin">
-                                <label>&nbsp;</label>
-                                <input type="submit" value="SAVE" id="submit-tour-file-config" class="btn btn-primary" />
-                                <a href="<?php echo site_url('dashboard')?>" class="btn btn-danger">CANCEL</a>
-                            </div>
-                        </form>
-                    </div>
-                </div><!-- tour file -->
-            <?php } ?>
 
         </div>
     </div><!-- col-md-12 -->

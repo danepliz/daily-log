@@ -13,10 +13,6 @@ class Settings_Controller extends Admin_Controller{
 
 	public function index(){
 
-		$this->load->helper(['location/country','currency/currency']);
-//		$lrepo = $this->doctrine->em->getRepository('models\Ledger');
-//		$ledgers = $lrepo->findAll();
-
 		if ($this->input->post()) {
             if($_FILES['config_stamp']['name'] != '') {
                 $config['upload_path'] = STAMP_UPLOAD_PATH;
@@ -28,11 +24,6 @@ class Settings_Controller extends Admin_Controller{
 
                 $this->load->library('upload', $config);
 
-				$currencyRepo = $this->doctrine->em->getRepository('currency\models\Currency');
-				$currencies = $currencyRepo->findBy(
-					[], //condition
-					array('name' =>'ASC')
-				);
 
                 if (!$this->upload->do_upload('config_stamp'))
                 {
@@ -58,6 +49,7 @@ class Settings_Controller extends Admin_Controller{
 			redirect('config/settings');
 
 		}
+        $this->templatedata['page_title'] = 'SETTINGS';
 		$this->templatedata['maincontent'] = 'config/settings/list';
 		$this->load->theme('master',$this->templatedata);
 	}

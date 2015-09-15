@@ -34,9 +34,6 @@
 
     <div class="col-xs-12" id="user-group-list">
         <div class="panel panel-default">
-            <div class="panel-heading bg-gray">
-                <h3 class="panel-title">User Group List</h3>
-            </div>
 
             <?php if( count($groups) > 0 ){ ?>
                 <table class="table table-striped">
@@ -77,7 +74,7 @@
                     ?>
                     </tbody>
                 </table>
-            <?php }else{ no_results_found('No User Groups Found.'); } ?>
+            <?php }else{ echo alertBox('No User Groups Found.','warning'); } ?>
         </div>
     </div>
 

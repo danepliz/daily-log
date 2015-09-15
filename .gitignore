@@ -41,6 +41,15 @@ assets/themes/yarsha/resources/css/jquery-ui.min.crush.css
 assets/themes/yarsha/resources/css/jquery-ui.theme.min.crush.css
 assets/themes/yarsha/resources/css/jquery.loadmask.crush.css
 
+assets/themes/yarsha/resources/css/.crush.css
+assets/themes/yarsha/resources/css/animate.min.crush.css
+assets/themes/yarsha/resources/css/custom.crush.css
+assets/themes/yarsha/resources/css/fonts/css/.csscrush
+assets/themes/yarsha/resources/css/fonts/css/font-awesome.min.crush.css
+assets/themes/yarsha/resources/css/icheck/flat/.csscrush
+assets/themes/yarsha/resources/css/icheck/flat/green.crush.css
+
+
 
 !.gitignore
 /nbproject/private/

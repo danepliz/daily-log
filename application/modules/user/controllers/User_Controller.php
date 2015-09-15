@@ -45,7 +45,7 @@ class User_Controller extends Admin_Controller
         $this->templatedata['filters'] = $filters;
         $this->templatedata['post'] = $post;
         $this->templatedata['countries'] = $countries;
-        $this->templatedata['page_title'] = 'User Lists';
+        $this->templatedata['page_title'] = 'USER | Lists';
         $this->templatedata['maincontent'] = 'user/list';
         $this->load->theme('master', $this->templatedata);
 
@@ -55,17 +55,13 @@ class User_Controller extends Admin_Controller
     {
         if (!user_access(  array( 'administer user' ) ) ) redirect();
 
-        $this->load->helper('location/country');
 
         if ($this->input->post()) {
             $this->form_validation->set_rules('group_id', 'Role', 'required');
-            $this->form_validation->set_rules('branch', 'Branch', 'required');
             $this->form_validation->set_rules('full_name', 'First Name', 'required');
             $this->form_validation->set_rules('email', 'Email', 'trim|email|required|is_unique[ys_users.email]');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|matches[confirmpassword]');
             $this->form_validation->set_rules('confirmpassword', 'Confirm Password', 'trim|required');
-            $this->form_validation->set_rules('country', 'Country', 'required');
-            $this->form_validation->set_rules('city', 'City', 'required');
             $this->form_validation->set_rules('address', 'Address', 'required');
             $this->form_validation->set_rules('mobile', 'Mobile');
 
@@ -80,13 +76,9 @@ class User_Controller extends Admin_Controller
                 $api_key = md5(microtime().rand(100, 900));
 
                 $groups = $this->doctrine->em->find('user\models\Group', $groupsId);
-                $country = $this->doctrine->em->find('location\models\Country', $countryID);
-                $branch = $this->doctrine->em->find('branch\models\Branch', $branchId);
 
 
                 $user->setFullName($fullName);
-                $user->setCountry($country);
-                $user->setCity(strip_tags(trim($this->input->post("city"))));
                 $user->setAddress($address);
                 $user->setEmail(strip_tags(trim($this->input->post("email"))));
                 $user->setPhone(strip_tags(trim($this->input->post("phone"))));
@@ -98,7 +90,6 @@ class User_Controller extends Admin_Controller
                 $user->setPwdLastChangedOn();
                 $user->setLastLogged();
                 $user->activate();
-                $user->setBranch($branch);
 
                 $this->doctrine->em->persist($user);
                 $this->doctrine->em->flush();
@@ -125,13 +116,10 @@ class User_Controller extends Admin_Controller
         $groups = $gRepo->getGroupList();
 
         $filters = array();
-        $aRepo = $this->doctrine->em->getRepository('agent\models\Agent');
-        $principal_agents = $aRepo->listPrincipalAgents(NULL, NULL, $filters);
 
         $this->templatedata['currentUser'] = &$currentUser;
-        $this->templatedata['principal_agents'] = &$principal_agents;
         $this->templatedata['groups'] = &$groups;
-        $this->templatedata['page_title'] = 'Add User';
+        $this->templatedata['page_title'] = 'USER | Add';
         $this->templatedata['maincontent'] = 'user/add';
         $this->load->theme('master', $this->templatedata);
     }
@@ -235,7 +223,7 @@ class User_Controller extends Admin_Controller
         $this->templatedata['groups'] = &$groups;
         $this->templatedata['currentUser'] = &$currentUser;
         $this->templatedata['user'] = $user;
-        $this->templatedata['page_title'] = 'Edit User | '.$user->getFullName();
+        $this->templatedata['page_title'] = 'USER | '.$user->getFullName();
         $this->templatedata['agents'] = &$agentsList;
         $this->load->theme('master', $this->templatedata);
 

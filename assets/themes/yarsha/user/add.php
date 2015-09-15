@@ -16,14 +16,12 @@ $userGroup = $currentUser->getGroup()->id();
                     <label for="group_id">User Group</label>
                     <?php accessible_group_list('group_id', $this->input->post('group_id'), 'class="required form-control" id="group_id"') ?>
                 </div>
-                <div class="form-group-sm">
-                    <label for="branch">Branch</label>
-                    <?php getBranchSelectElement('branch', set_value('branch'), 'class="form-control required" id ="branch"'); ?>
-                </div>
+
                 <div class="form-group-sm">
                     <label for="full_name">Full Name</label>
                     <input type="text" name="full_name" value="<?php echo set_value('full_name')?>" class="form-control required" />
                 </div>
+
                 <div class="form-group-sm">
                     <label for="email">Email</label>
                     <input type="text" name="email" id="email" class="form-control required email" value="<?php echo set_value('email')?>" />
@@ -44,23 +42,16 @@ $userGroup = $currentUser->getGroup()->id();
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">Contact Information</h3> </div>
             <div class="panel-body">
-                <div class="form-group-sm">
-                    <label for="country">Country</label>
-                    <?php getCountrySelectElement('country', $this->input->post('country'), 'class="form-control required" id="country"') ?>
-                </div>
-                <div class="form-group-sm">
-                    <label for="city">City</label>
-                    <input type="text" name="city" value="<?php echo $this->input->post('city') ?>" class="form-control required" placeholder="city" />
-                </div>
+
                 <div class="form-group-sm">
                     <label for="address">Address</label>
                     <textarea name="address" class="form-control required" style="min-height: 10rem"><?php echo $this->input->post('address') ?></textarea>
                 </div>
-                <div class="form-group-sm col-md-6">
+                <div class="form-group-sm">
                     <label for="mobile">Mobile</label>
                     <input type="text" name="mobile" class="form-control  number_only" value="<?php echo $this->input->post('mobile') ?>" />
                 </div>
-                <div class="form-group-sm col-md-6">
+                <div class="form-group-sm">
                     <label for="phone">Phone</label>
                     <input type="text" name="phone" class="form-control number_only" value="<?php echo $this->input->post('phone') ?>" />
                 </div>

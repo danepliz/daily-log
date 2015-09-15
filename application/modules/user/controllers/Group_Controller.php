@@ -111,7 +111,7 @@ class Group_Controller extends Admin_Controller{
 
         $this->templatedata['post'] = $post;
 		$this->templatedata['group'] = $group;
-        $this->templatedata['page_title'] = $group->getName();
+        $this->templatedata['page_title'] = 'GROUP | '.$group->getName();
 		$this->templatedata['maincontent'] = 'user/group/editgroup';
 		$this->load->theme('master',$this->templatedata);
 	}
