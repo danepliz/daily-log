@@ -79,10 +79,11 @@ class Work
 
 
     public static $user_status = array(
-        self::PROJECT_STATUS_ACTIVE => 'Active',
-        self::PROJECT_STATUS_BLOCKED => 'Blocked',
-        self::PROJECT_STATUS_DELETED => 'Deleted',
-        self::PROJECT_STATUS_HANDLED => 'Handled'
+        self::WORK_STATUS_TO_DO => 'Todo',
+        self::WORK_STATUS_CANCELLED => 'Cancelled',
+        self::WORK_STATUS_DOING => 'Doing',
+        self::WORK_STATUS_DONE => 'Done',
+        self::WORK_STATUS_EXPIRED => 'Expired'
     );
 
     public function __construct(){
