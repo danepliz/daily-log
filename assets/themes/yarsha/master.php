@@ -115,24 +115,16 @@
                 </div>
             </div>
 
-            <div class="row">
-                <h2 class="blog-title">Recent Activities</h2>
-                <div class="blog-post">
-                    <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
-                    <h2 class="blog-post-title">New feature on MIS</h2>
 
-                </div>
-            </div>
         </div>
 
 
         <div class="col-md-4">
             <div class="row">
-                <div class="col-md-12 chart-wrap">
-
-                </div>
-
-                <div class="col-md-12 chart-wrap">
+                <h2 class="blog-title">Recent Activities</h2>
+                <div class="blog-post">
+                    <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
+                    <p class="blog-post-detail">New feature on MIS</p>
 
                 </div>
             </div>
