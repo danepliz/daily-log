@@ -1,0 +1,53 @@
+/** CSS **/
+
+
+
+@font-face {
+    font-family: 'source-sans-pro';
+    src: url('../fonts/SourceSansPro-Semibold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body{
+    background: #F8F8F8!important;
+    color: #888;
+    font-size: 13px;
+    line-height: 1.6em;
+}
+
+#header-row{
+    background: #F0F0F0;
+    /*background: #487472;*/
+    color: #FFFFFF;
+}
+
+a{
+    color: #639E9C !important;
+    /*color: #79B8B5 !important;*/
+    text-decoration: none;
+}
+
+a:hover{
+    /*color: #639E9C !important;*/
+    color: #000000 !important;
+}
+
+.head-wrapper, .content-wrapper{
+    width:80%;
+    margin:0 auto;
+}
+
+.content-wrapper{
+    margin:2em auto;
+}
+
+.navbar{
+    background: none !important;
+    border: none !important;
+    margin-bottom: 0px !important;
+}
+
+
+

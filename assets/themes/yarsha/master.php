@@ -12,7 +12,8 @@
 
     <!-- Bootstrap core CSS -->
     <?php
-        loadCSS(['bootstrap.min', 'fonts/css/font-awesome.min', 'animate.min', 'custom', 'icheck/flat/green.css' ]);
+        // loadCSS(['bootstrap.min', 'fonts/css/font-awesome.min', 'animate.min', 'custom', 'icheck/flat/green.css' ]);
+        loadCSS(['bootstrap.min', 'fonts/css/font-awesome.min', 'style' ]);
 
     ?>
 
@@ -33,313 +34,83 @@
 </head>
 
 
-<body class="nav-md">
-
-<div class="container body">
+<body>
 
 
-<div class="main_container">
+<div id="header-row">
+    <div class="head-wrapper">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">DaLog</a>
+                </div>
 
-<div class="col-md-3 left_col">
-    <div class="left_col scroll-view">
-
-        <div class="navbar nav_title" style="border: 0;">
-
-            <a href="<?php echo base_url() ?>" class="site_title"><span>
-<!--                    <img src="--><?php //echo base_url().'assets/themes/yarsha/resources/images/brand.png' ?><!--" />-->
-                    YARSHA
-                </span>
-            </a>
-        </div>
-        <div class="clearfix"></div>
-
-        <!-- menu prile quick info -->
-        <div class="profile">
-            <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-            </div>
-            <div class="profile_info">
-                <span>Welcome,</span>
-                <h2><?php echo $current_user->getFullName() ?></h2>
-            </div>
-        </div>
-        <!-- /menu prile quick info -->
-
-        <br />
-
-        <!-- sidebar menu -->
-        <?php echo getAdminMenu(); ?>
-        <!-- /sidebar menu -->
-
-        <!-- /menu footer buttons -->
-        <div class="sidebar-footer hidden-small">
-            <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Logout">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-            </a>
-        </div>
-        <!-- /menu footer buttons -->
-    </div>
-</div>
-
-<!-- top navigation -->
-<div class="top_nav">
-
-    <div class="nav_menu">
-        <nav class="" role="navigation">
-            <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-            </div>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <img src="images/img.jpg" alt=""><?php echo $current_user->getFullName(); ?>
-                        <span class=" fa fa-angle-down"></span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                        <li><a href="<?php echo site_url('user/profile') ?>">  Profile</a>
-                        </li>
-<!--                        <li>-->
-<!--                            <a href="javascript:;">-->
-<!--                                <span class="badge bg-red pull-right">50%</span>-->
-<!--                                <span>Settings</span>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="javascript:;">Help</a>-->
-<!--                        </li>-->
-                        <li><a href="<?php echo site_url('auth/logout') ?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+<!--                        <li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li>-->
+                        <li><a href="#"><i class="fa fa-bell-o"></i></a></li>
+                        <li><a href="#"><i class="fa fa-gear"></i></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle top-profile-pic" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Danepliz
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
                         </li>
                     </ul>
-                </li>
-
-
-
-            </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
         </nav>
     </div>
-
 </div>
-<!-- /top navigation -->
 
-<!-- page content -->
-<div class="right_col" role="main">
-    <div class="">
-        <div class="page-title">
 
-            <div class="title_left">
-                <h3><?php echo ( isset($page_title) ) ? $page_title : '&nbsp'; ?></h3>
+<div class="">
+    <div class="content-wrapper">
 
-            </div>
-
-            <div class="title_right">
-                <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right top_search">
-                    <ol class="breadcrumb"> <?php echo $this->breadcrumb->output(); ?> </ol>
-<!--                    <div class="input-group">-->
-<!--                        <input type="text" class="form-control" placeholder="Search for...">-->
-<!--                                    <span class="input-group-btn">-->
-<!--                            <button class="btn btn-default" type="button">Go!</button>-->
-<!--                        </span>-->
-<!--                    </div>-->
-                </div>
+        <div class="col-md-4 col-lg-3 col-sm-12 col-xs-12" id="sidebar-left">
+            <div class="box">
+                <div class="box-heading"><h2 class="box-title">Test</h2></div>
+                <ul>
+                    <li>Test</li>
+                    <li>Test</li>
+                    <li>Test</li>
+                    <li>Test</li>
+                </ul>
             </div>
         </div>
-        <div class="clearfix"></div>
 
 
-        <?php
-        if( isset($error) || isset($critical_alerts) || isset($feedback) || $validation_errors = validation_errors('<p>','</p>') ){ ?>
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-
-                <?php
-
-                if(isset($critical_alerts)){
-                    foreach($critical_alerts as $type => $msg){
-                        echo alertBox($msg, $type, TRUE);
-                    }
-                }
-
-                if(isset($feedback)){
-                    foreach($feedback as $type => $messages){
-                        if(count($messages) > 0){
-                            $class = ($type == 'error')? 'danger' : $type;
-                            $output = '';
-                            foreach($messages as $msg)
-                                $output .= '<p>'.$msg.'</p>';
-                            echo alertBox($output, $class, TRUE);
-                        }
-                    }
-                }
-
-                ?>
-                <?php
-                if($validation_errors = validation_errors('<p>','</p>')) echo alertBox($validation_errors, 'danger', TRUE);
-
-                if(isset($error) and $error != '' ) echo alertBox($error, 'danger', TRUE);
-                ?>
-
-            </div>
+        <div class="col-md-8 col-lg-9 col-sm-12 col-xs-12" id="container-right">
+            ssh-rsa AAAAB3NzaC1yc2EAAAADAQAB AAABAQC6CZGjHjqxhtx/cM3
+            kT06Z8LGUMEHxohBSU 4U+LaICOWDaLC0O/oG q89vM5m30bDlsxLHirQm knIybtOHwhSMWllYn \
+            k37Pc02vLaMsGeVMI ii14b8vUlOIJw9jR R7XDgj70zuhzK4ErHeNt8/T xScZ7qPU1syfqnoBhLym
+             M9zNrXlXSVF55e BzLzTGAjgp373CnnSL1 mturubVz4By+j5c4In8 yBPXXyc4KvgvGIj6YrTvLix
+            gHLMvPRWi4IqJUb 3wWzcnDJWoV2Vx+Ec 4cNgGd3MX4q+pxl rI7kUb43HBiL96HC l6WgfEPOf2iKv
+            BrrlmV1p6qbatN 9scO3Uh/GPh danepliz@gmail.com
         </div>
-        <?php } ?>
 
 
-        <div class="row main-container-wrapper">
-
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <?php if (isset($maincontent)) $this->load->theme($maincontent); ?>
-            </div>
-        </div>
     </div>
-
-    <!-- footer content -->
-<!--    <footer>-->
-<!--        <div class="">-->
-<!--            <p class="pull-right">Yarsha studio employee work log ! <a href="http://yarshastudio.com/">Yarsha Studio</a>. |-->
-<!--                <span class="lead"> <i class="fa fa-paw"></i> Yarsha Studio!</span>-->
-<!--            </p>-->
-<!--        </div>-->
-<!--        <div class="clearfix"></div>-->
-<!--    </footer>-->
-    <!-- /footer content -->
-
-</div>
-<!-- /page content -->
-</div>
-
-</div>
-
-<div id="custom_notifications" class="custom-notifications dsp_none">
-    <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
-    </ul>
-    <div class="clearfix"></div>
-    <div id="notif-group" class="tabbed_notifications"></div>
-</div>
-
-
-
-<?php
-loadJS([
-
-    'chartjs/chart.min',
-    'progressbar/bootstrap-progressbar.min',
-    'nicescroll/jquery.nicescroll.min',
-    'icheck/icheck.min',
-
-    'custom',
-
-//    'moris/raphael-min',
-//    'moris/morris',
-//    'moris/example'
-]);
-
-
-$notyUI = (
-    (isset($site_maintenance) and is_array($site_maintenance))
-    or
-    (isset($user_switch) and is_array($user_switch))
-) ? TRUE : FALSE;
-?>
-
-<script type="text/javascript">
-    if ( ! window.console || typeof console === "undefined" ) {
-        console = {};
-        console.log = function(arg){};
-    }
-
-    $(function(){
-
-//        $('.datepicker').datepicker({
-//            dateFormat: 'yy-mm-dd',
-//            changeMonth: true,
-//            changeYear: true
-//        });
-
-        var parentMenu = $('.sidebar-menu').find('li.active').parent('ul').parent('li');
-        parentMenu.addClass('active');
-        parentMenu.find('ul').show();
-        var height = window.innerHeight - 70;
-        $('section.content').css({'min-height':height});
-
-        <?php if (isset($site_maintenance) and is_array($site_maintenance)): ?>
-        generateSiteNoty();
-        <?php endif?>
-        <?php if (isset($user_switch) and is_array($user_switch)): ?>
-        generateUserNoty();
-        <?php endif?>
-
-        <?php if ($notyUI):?>
-        //$('body').css('margin-top', parseInt($('body').css('margin-top'))+37);
-        <?php endif?>
-        Yarsha.validator = $('form.validate').validate({
-            errorElement:'span'
-        });
-
-//        $(".multiselect").multiSelect();
-//
-//        $(".search-select").select2();
-
-        $('.cancelaction').click(function(){
-            window.history.back();
-        });
-
-        $('.backlink').click(function(){
-            window.location = $(this).attr('link');
-        });
-    });
-
-    <?php if (isset($site_maintenance) and is_array($site_maintenance)): ?>
-    function generateSiteNoty() {
-
-        var s = noty({
-            text: '<?php echo $site_maintenance['text']?>',
-            type: '<?php echo $site_maintenance['type']?>',
-            dismissQueue: true,
-            layout: '<?php echo $site_maintenance['layout']?>',
-            theme: '<?php echo $site_maintenance['theme']?>',
-            closeWith:['button'],
-            callback: {
-                afterClose: function() {
-                    $('body').css('margin-top', parseInt($('body').css('margin-top'))-37);
-                }
-            },
-        });
-    }
-    <?php endif?>
-
-    <?php if (isset($user_switch) and is_array($user_switch)): ?>
-    function generateUserNoty() {
-
-        var u = noty({
-            text: '<?php echo $user_switch['text']?>',
-            type: '<?php echo $user_switch['type']?>',
-            dismissQueue: true,
-            layout: '<?php echo $user_switch['layout']?>',
-            theme: '<?php echo $user_switch['theme']?>',
-            closeWith:['button'],
-            callback: {
-                afterClose: function() {
-                    $('body').css('margin-top', parseInt($('body').css('margin-top'))-37);
-                }
-            }
-
-        });
-    }
-    <?php endif?>
+</div><!-- content -->
 
 
 
 
-</script>
 
 </body>
 

@@ -120,4 +120,8 @@ function locateIcon( $image ){
 	
 	return $loc;
 }
+
+function image_url($string = ''){
+    return theme_url().'resources/images/'.$string;
+}
 ?>
