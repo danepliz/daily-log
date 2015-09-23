@@ -82,6 +82,55 @@
 <div class="">
     <div class="content-wrapper">
 
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="quick-box bg-light-blue">
+                        <div class="quick-count">209</div>
+                        <div class="quick-label">Projects</div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="quick-box">
+                        <div class="quick-count">35</div>
+                        <div class="quick-label">Tasks Assigned</div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="quick-box bg-green">
+                        <div class="quick-count">209</div>
+                        <div class="quick-label">Projects</div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="quick-box bg-pink">
+                        <div class="quick-count">35</div>
+                        <div class="quick-label">Total Assigned Works</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12 chart-wrap">
+
+                </div>
+
+                <div class="col-md-12 chart-wrap">
+
+                </div>
+            </div>
+        </div>
+
+
+
         <div class="col-md-4 col-lg-3 col-sm-12 col-xs-12" id="sidebar-left">
             <div class="box">
                 <div class="box-heading"><h2 class="box-title">Test</h2></div>
