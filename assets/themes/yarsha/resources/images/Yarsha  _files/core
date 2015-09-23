@@ -1,0 +1,9 @@
+
+var Yarsha =
+{
+	config:{
+		base_url : 'http://localhost/daily-log/'
+	},
+	validator : null,
+	allcountries: ["Nepal","China","India"],
+	destinationCountries: ["Nepal","China","India"]};

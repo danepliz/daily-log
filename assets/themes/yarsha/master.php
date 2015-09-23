@@ -49,7 +49,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">DaLog</a>
+                    <a class="navbar-brand" href="#">DALOG</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -112,6 +112,15 @@
                         <div class="quick-count">35</div>
                         <div class="quick-label">Total Assigned Works</div>
                     </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <h2 class="blog-title">Recent Activities</h2>
+                <div class="blog-post">
+                    <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
+                    <h2 class="blog-post-title">New feature on MIS</h2>
+
                 </div>
             </div>
         </div>

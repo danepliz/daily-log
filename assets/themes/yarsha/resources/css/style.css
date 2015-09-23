@@ -93,4 +93,28 @@ a:hover{
     color: #FFF;
 }
 
+h2{
+    font-family: source-sans-pro;
+}
+
+h2.blog-title{
+    font-family: source-sans-pro;
+    letter-spacing: -2px;
+    word-spacing: 5px;
+    border-bottom: 1px solid #666;
+    color: #666;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.blog-post{
+    background: #EEE;
+    padding: 1em;
+    margin: 1em 0px;
+}
+
+.blog-post-title{
+    padding:0px;
+    margin: 1rem 0px;
+}
 
