@@ -29,6 +29,21 @@ class Project_Controller extends Admin_Controller{
         $this->load->theme('master', $this->templatedata);
     }
 
+    public function detail($slug){
+
+        $projectRepository = $this->doctrine->em->getRepository('project\models\Project');
+        $project = $projectRepository->findOneBy(['slug' => $slug]);
+
+        if( ! $project ){
+            redirect('dashboard');
+        }
+
+        $this->templatedata['page_title'] = $project->getName();
+        $this->templatedata['project'] = $project;
+        $this->templatedata['maincontent'] = 'project/detail';
+        $this->load->theme('master', $this->templatedata);
+    }
+
     public function add($id = ''){
 
         if( $id != '' and !user_access('edit project')) redirect('dashboard');

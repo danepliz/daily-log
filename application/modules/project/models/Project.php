@@ -226,5 +226,9 @@ class Project
         return "<span class='label label-{$class}'>{$label}</span>";
     }
 
+    public function getStatusAsString(){
+        return self::getStatusString($this->getStatus());
+    }
+
 
 }
