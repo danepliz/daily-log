@@ -1,3 +1,15 @@
+<?php
+    $projectMeta = $project->getMeta();
+    $metaArray = [];
+    foreach($projectMeta as $meta){
+        if( $meta->showToAll() or user_access('list project meta') ){
+            $metaArray[$meta->getMetaKey()] = $meta->getMetaValue();
+        }
+    }
+
+    $hasMeta = count($metaArray);
+?>
+
 <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
 
     <div class="page-header-wrap">
@@ -22,7 +34,35 @@
                         ?>
                     </cite>
                 </footer>
+                    <?php if($hasMeta){ ?>
+                        <div class="clearfix"></div>
+                        <!--                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectMetaDialog">Other Details</button>-->
+                        <a href="#"  data-toggle="modal" data-target="#projectMetaDialog">MORE DETAIL</a>
+
+                        <div class="modal fade" tabindex="-1" role="dialog" id="projectMetaDialog" aria-labelledby="mySmallModalLabel">
+                            <div class="modal-dialog modal-md">
+                                <div class="modal-content">
+                                    <!--                            <div class="modal-header">-->
+                                    <!--                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                                    <!--                                <h2>Other Details</h2>-->
+                                    <!--                            </div>-->
+                                    <div class="modal-body">
+                                        <table class="table">
+                                            <?php foreach($metaArray as $k => $v) {
+                                                echo '<tr><td>'.$k.'</td><td>'.$v.'</td></tr>';
+                                            } ?>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php }?>
+
+
             </blockquote>
+
+
     </div>
 
     <hr class="separator" />
@@ -125,6 +165,8 @@
         </div>
 <!--    </div>-->
 </div>
+
+
 
 
 

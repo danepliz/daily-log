@@ -177,3 +177,34 @@ hr.separator{
     margin-bottom:3em;
 }
 
+.modal-body{
+    background: #FAFAFA;
+}
+
+.td-small{
+    width:2.5em;
+    padding:0px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.chk-label{
+    cursor: pointer;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.chk-label input{
+    margin: 0.8em;
+}
+
+.project_meta_sheepit_table input[type="text"]{
+    border-width: 0 0 1px 0;
+    border-style:  solid;
+    border-color:  #ddd !important;
+}
+
+textarea{
+    min-height: 12em !important;
+}
+

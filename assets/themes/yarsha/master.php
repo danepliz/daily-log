@@ -49,7 +49,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">DALOG</a>
+                    <a class="navbar-brand" href="<?php echo base_url() ?>">DALOG</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->

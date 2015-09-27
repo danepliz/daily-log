@@ -80,6 +80,11 @@ class Project
      */
     private $members;
 
+    /**
+     * @ORM\OneToMany(targetEntity="project\models\ProjectAttachment", mappedBy="project")
+     */
+    private $attachments;
+
 
     public static $user_status = array(
         self::PROJECT_STATUS_ACTIVE => 'Active',
@@ -91,6 +96,7 @@ class Project
     public function __construct(){
         $this->meta = new ArrayCollection();
         $this->members = new ArrayCollection();
+        $this->attachments = new ArrayCollection();
     }
     
     public function id()
@@ -229,6 +235,27 @@ class Project
     public function getStatusAsString(){
         return self::getStatusString($this->getStatus());
     }
+
+    public function getAttachments(){
+        return $this->attachments;
+    }
+
+    public function addAttachment($attachment){
+        $this->attachments->add($attachment);
+        return $this;
+    }
+
+    public function removeAttachement($attachment){
+        $this->attachments->removeElement($attachment);
+        return $this;
+    }
+
+    public function resetAttachments(){
+        $this->attachments = new ArrayCollection();
+    }
+
+
+
 
 
 }

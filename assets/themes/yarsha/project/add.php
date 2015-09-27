@@ -14,7 +14,7 @@ echo loadJS(['jquery.sheepit.min']);
 echo form_open('', 'method="post" class="form-horizontal form-label-left validate" role="form"');
 echo panelWrapperOpen('col-md-12','Information', TRUE);
 echo inputWrapper('name', 'Project Name', $name, 'class="form-control required"');
-echo textAreaWrapper('description', 'Description', $description, 'class="form-control"');
+echo textAreaWrapper('description', 'Description', $description, 'class="form-control" rows=""');
 echo panelWrapperClose();
 
 
@@ -27,37 +27,52 @@ echo panelWrapperOpen('col-md-12','Project Meta', TRUE);
 
 
 
-<div classs="col-md-12 form-group-sm">
+<div classs="col-md-12 form-group-sm table-responsive">
 
-    <table class="table sheepit-table">
+<!--    <div class="col-md-12">-->
+<!--        <div class="col-md-1">-->
+<!--            <input type="checkbox" />-->
+<!--        </div>-->
+<!--        <div class="input-group">-->
+<!--            <span class="input-group-addon"><input type="text" class="form-control" /></span>-->
+<!--            <span class="input-group-addon"><input type="text" class="form-control" /></span>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+    <table class="table sheepit-table project_meta_sheepit_table">
         <tbody id="meta">
-            <tr>
-                <th>Key</th>
-                <th>Value</th>
-                <th>Access To All</th>
-                <th>&nbsp;</th>
-            </tr>
-
             <tr id="meta_template">
-                <td><input type="text" name="meta[#index#][key]" class="form-control" /></td>
-                <td><input type="text" name="meta[#index#][value]" class="form-control" /></td>
-                <td><input type="checkbox" name="meta[#index#][allow]" class="form-control simple"/></td>
+                <td class="td-small">
+                    <label class="chk-label">
+                        <input type="checkbox" name="meta[#index#][allow]" class="sform-control simple" title="access to all"/>
+                    </label>
+                </td>
+                <td><input type="text" name="meta[#index#][key]" class="form-control" placeholder="key" /></td>
+                <td class="td-small">:</td>
+                <td><input type="text" name="meta[#index#][value]" class="form-control" placeholder="value" /></td>
                 <td><a id="meta_remove_current"><i class="fa fa-trash"></i></a></td>
             </tr>
 
             <?php
                 if( count($meta) ){
                     foreach($meta as $m){
-                        $tempId = 'old_meta_'.$m->id();
+                        $metaId = $m->id();
+                        $tempId = 'old_meta_'.$metaId;
                         $prefilledForms[] = $tempId;
                         $checked = ($m->showToAll())? 'checked="checked"' : '';
             ?>
-                <tr id="<?php echo $tempId ?>">
-                    <td><input type="text" name="meta[#index#][key]" class="form-control" value="<?php echo $m->getMetaKey() ?>" /></td>
-                    <td><input type="text" name="meta[#index#][value]" class="form-control" value="<?php echo $m->getMetaValue() ?>"  /></td>
-                    <td><input type="checkbox" name="meta[#index#][allow]" class="form-control simple" <?php echo $checked ?> /></td>
-                    <td><a id="meta_remove_current"><i class="fa fa-trash"></i></a></td>
-                </tr>
+            <tr id="<?php echo $tempId ?>">
+                <td class="td-small">
+                    <label class="chk-label">
+                        <input type="checkbox" name="meta[#index#][allow]" class="sform-control simple" title="access to all" <?php echo $checked ?> />
+                    </label>
+                </td>
+                <td><input type="text" name="meta[#index#][key]" class="form-control" placeholder="key" value="<?php echo $m->getMetaKey() ?>" /></td>
+                <td class="td-small">:</td>
+                <td><input type="text" name="meta[#index#][value]" class="form-control" placeholder="value" value="<?php echo $m->getMetaValue() ?>" /></td>
+                <td><a id="meta_remove_current"><i class="fa fa-trash"></i></a></td>
+            </tr>
 
             <?php
                     }
@@ -69,7 +84,7 @@ echo panelWrapperOpen('col-md-12','Project Meta', TRUE);
             </tr>
 
             <tr id="meta_controls">
-                <td colspan="4" ><a class="btn btn-default" id="meta_add"><i class="fa fa-plus-square"></i> add new meta</a></td>
+                <td colspan="4" ><a id="meta_add"><i class="fa fa-plus-square"></i> add another</a></td>
             </tr>
 
         </tbody>

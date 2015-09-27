@@ -44,16 +44,17 @@ class Project_Controller extends Admin_Controller{
         $this->load->theme('master', $this->templatedata);
     }
 
-    public function add($id = ''){
+    public function add($slug = ''){
 
-        if( $id != '' and !user_access('edit project')) redirect('dashboard');
+        if( $slug != '' and !user_access('edit project')) redirect('dashboard');
 
-        if( $id == '' and !user_access('add project') ) redirect('dashboard');
+        if( $slug == '' and !user_access('add project') ) redirect('dashboard');
 
         $project = NULL;
 
-        if( $id != '' ){
-            $project = $this->doctrine->em->find('project\models\Project', $id);
+        if( $slug != '' ){
+            $projectRepo = $this->doctrine->em->getRepository('project\models\Project');
+            $project = $projectRepo->findOneBy(['slug' => $slug]);
             if( !$project ){
                 redirect('dashboard');
             }
@@ -100,7 +101,7 @@ class Project_Controller extends Admin_Controller{
                 try{
                     $this->doctrine->em->flush();
                     $this->message->set('Project Added Successfully', 'success', TRUE,'feedback');
-                    redirect('project');
+                    redirect('project/detail/'.$slug);
                 }catch(\Exception $e){
                     $this->templatedata['error'] = $e->getMessage();
                 }
@@ -109,7 +110,7 @@ class Project_Controller extends Admin_Controller{
 
         }
 
-        $pageTitle = ($id != '')? $project->getName() : 'Add';
+        $pageTitle = ($slug != '')? $project->getName() : 'Add';
 
         $this->templatedata['page_title'] = 'PROJECT | '.$pageTitle;
         $this->templatedata['project'] = $project;
