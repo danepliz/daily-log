@@ -1,3 +1,4 @@
+<div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
 <?php
 
 $name = $description = NULL;
@@ -10,7 +11,6 @@ if( $project ){
 }
 
 echo loadJS(['jquery.sheepit.min']);
-
 echo form_open('', 'method="post" class="form-horizontal form-label-left validate" role="form"');
 echo panelWrapperOpen('col-md-12','Information', TRUE);
 echo inputWrapper('name', 'Project Name', $name, 'class="form-control required"');
@@ -23,11 +23,7 @@ echo panelWrapperOpen('col-md-12','Project Meta', TRUE);
 ?>
 
 
-
-
-
-
-<div classs="col-md-12 form-group-sm table-responsive">
+<div classs="col-md-12 col-sm-12 col-lg-8 col-xs-12 form-group-sm table-responsive">
 
 <!--    <div class="col-md-12">-->
 <!--        <div class="col-md-1">-->
@@ -92,27 +88,56 @@ echo panelWrapperOpen('col-md-12','Project Meta', TRUE);
 
 </div>
 
+    <?php
+
+    echo panelWrapperClose();
+    echo panelWrapperOpen(); ?>
+    <div class="col-md-12">
+        <input type="submit" value="SUBMIT"  class="btn btn-default" />
+    </div>
+
+    <?php
+        echo panelWrapperClose();
+        echo form_close();
+    ?>
+
+</div><!-- left side -->
+
+
+<div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+    <?php
+
+        echo panelWrapperOpen('col-md-12', 'Attachments', TRUE);
+
+        echo form_open('', 'class="dropzone dz-clickable dz-started form-horizontal form-label-left validate" role="form"');
+        echo '<div class="dz-default dz-message"><span>Drop files here to upload</span></div>';
+        echo form_close();
+
+    ?>
 
 
 
+    <ul class="list-unstyled project_files">
+        <li><a href=""><i class="fa fa-file-word-o"></i> Functional-requirements.docx</a>
+        </li>
+        <li><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a>
+        </li>
+        <li><a href=""><i class="fa fa-mail-forward"></i> Email-from-flatbal.mln</a>
+        </li>
+        <li><a href=""><i class="fa fa-picture-o"></i> Logo.png</a>
+        </li>
+        <li><a href=""><i class="fa fa-file-word-o"></i> Contract-10_12_2014.docx</a>
+        </li>
+    </ul>
 
-
-<?php
-
-echo panelWrapperClose();
-echo panelWrapperOpen(); ?>
-<div class="col-md-12">
-    <input type="submit" value="SUBMIT"  class="btn btn-default" />
+    <?php
+        echo panelWrapperClose();
+    ?>
 </div>
 
-<?
-echo panelWrapperClose();
-
-echo form_close();
 
 
-?>
-
+<?php echo loadJS(['dropzone/dropzone']); ?>
 
 
 <script type="text/javascript">

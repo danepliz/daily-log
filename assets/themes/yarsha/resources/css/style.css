@@ -208,3 +208,19 @@ textarea{
     min-height: 12em !important;
 }
 
+.myList{
+    padding-left: 2em;
+}
+.myList li{
+    list-style: disc;
+    color: #639E9C ;
+}
+
+
+a.readmore{
+    float: right;
+    clear: right;
+    font-size: 85%;
+    font-family: source-sans-pro;
+}
+

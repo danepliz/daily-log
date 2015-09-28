@@ -155,6 +155,26 @@
             </div>
         </div>
 
+        <ul class="list-unstyled">
+            <li><a href="#" ><i class="fa fa-angle-double-right"></i>View Details</a></li>
+            <li><a href="#" ><i class="fa fa-plus"></i>Add Member</a></li>
+        </ul>
+
+
+
+        <div class="clearfix box-separator"></div>
+
+        <h2 class="blog-title">SUB PROJECT LISTS</h2>
+        <ul class="list-unstyled project_files myList">
+            <li><a href="">Functional-requirements.docx</a></li>
+            <li><a href="">UAT.pdf</a></li>
+            <li><a href="">Email-from-flatbal.mln</a></li>
+            <li><a href="">Logo.png</a></li>
+            <li><a href="">Contract-10_12_2014.docx</a></li>
+        </ul>
+        <a href="" class="readmore">VIEW ALL <i class="fa fa-angle-double-right"></i></a>
+
+
         <div class="clearfix box-separator"></div>
 
         <h2 class="blog-title">Task List</h2>
