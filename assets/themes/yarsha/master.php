@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Yarsha | <?php echo isset($page_title)? $page_title : ''  ?> </title>
+    <title>DLog | <?php echo isset($page_title)? $page_title : ''  ?> </title>
 
     <!-- Bootstrap core CSS -->
     <?php
@@ -57,18 +57,28 @@
                     <ul class="nav navbar-nav navbar-right">
 <!--                        <li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li>-->
                         <li><a href="#"><i class="fa fa-bell-o"></i></a></li>
-                        <li><a href="#"><i class="fa fa-gear"></i></a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle top-profile-pic" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                Danepliz
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-gear"></i>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
+                                <li><a href="<?php echo site_url('project') ?>"><i class="fa fa-list"></i> Projects</a></li>
+                                <li><a href="<?php echo site_url('user') ?>"><i class="fa fa-users"></i> Users</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle top-profile-pic" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <?php
+                                    echo Current_User::user()->getFullName();
+                                ?>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+                                <li><a href="#"><i class="fa fa-lock"></i> Change Password</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
+                                <li><a href="<?php echo site_url('auth/logout') ?>"><i class="fa fa-power-off"></i> Logout</a></li>
                             </ul>
                         </li>
                     </ul>
