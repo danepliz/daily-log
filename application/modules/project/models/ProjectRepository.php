@@ -38,7 +38,7 @@ class ProjectRepository extends EntityRepository
     public function searchForMembers($query, $project = NULL){
 
         $qb = $this->_em->createQueryBuilder();
-        $qb2 = $this->_em->createQueryBuilder();
+
 
         $qb->select('u')
             ->from('user\models\User' , 'u')
@@ -51,22 +51,21 @@ class ProjectRepository extends EntityRepository
             )
         );
 
-//        if($project){
-//
-//            $qb->andWhere(
-//                $qb->expr()->notIn(
-//                    'u.id',
-//                    $qb2->select('m.id')
-//                        ->from('project\models\Project', 'p')
-//                        ->leftJoin('p.members', 'm')
-//                        ->where('p.id = '.$project)
-//                        ->getDQL()
-//                )
-//            );
-//
-//        }
 
-//        echo $qb->getQuery()->getSQL();
+        if($project){
+
+            $qb2 = $this->_em->createQueryBuilder();
+            $qb->andWhere(
+                $qb->expr()->notIn(
+                    'u.id',
+                    $qb2->select('m.id')
+                        ->from('project\models\Project', 'p')
+                        ->innerJoin('p.members', 'm')
+                        ->where('p.id = '.$project)
+                        ->getDQL()
+                )
+            );
+        }
         return $qb->getQuery()->getResult();
     }
 

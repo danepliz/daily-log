@@ -15,21 +15,9 @@ class Ajax_Controller extends Xhr{
 
         $users = $projectRepo->searchForMembers($queryString, $projectId);
 
-        $usersArray = [];
-        if(count($users))
-        {
-            foreach($users as $u)
-            {
-                $usersArray[] = [
-                    'id' => $u->id(),
-                    'email' => $u->getEmail(),
-                    'name' => $u->getFullname(),
-                    'image' => getImageTag($u->getGravatar('30')),
-                ];
-            }
-        }
+        $html = ( count($users) )? getMemberSearchResultListElement($users, $projectId) : '';
 
-        echo json_encode($usersArray);
+        echo json_encode(['html' => $html]);
     }
 
     public function addMember()
@@ -58,17 +46,7 @@ class Ajax_Controller extends Xhr{
 
                     try{
                         $this->doctrine->em->flush();
-                        $html = '<div class="col-md-2 m-wrap">';
-                        $html .= getImageTag(
-                            $user->getGravatar(200, 'wavatar'),
-                            [
-                                'data-toggle'=> 'tooltip',
-                                'data-placement'=> 'bottom',
-                                'title'=> $user->getFullname().'<br />'.$user->getEmail()
-                            ]
-                        );
-                        $html .= '<br />'.$user->getFullname();
-                        $html .= '</div>';
+                        $html = getMemberListElement($user);
                         $response['status'] = 'success';
                         $response['member'] = $html;
                     }catch (\Exception $e){

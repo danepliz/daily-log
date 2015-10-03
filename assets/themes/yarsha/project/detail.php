@@ -179,21 +179,10 @@
                         <?php
                         if(count($project->getMembers())){
                             foreach($project->getMembers() as $member){
-                                $memberName = $member->getFullname();
-                                echo '<div class="col-md-2 m-wrap">';
-                                echo getImageTag(
-                                    $member->getGravatar(200, 'wavatar'),
-                                    [
-                                        'data-toggle'=> 'tooltip',
-                                        'data-placement'=> 'bottom',
-                                        'title'=> $memberName.'<br />'.$member->getEmail()
-                                    ]
-                                );
-                                echo '<br />'.$memberName;
-                                echo '</div>';
+                                echo getMemberListElement($member);
                             }
                         }else{
-                            echo '<div class="col-m d-12">No Members Added</div>';
+                            echo '<div class="col-m d-12 no-member-info">No Members Added</div>';
                         }
                         ?>
                     </div>
@@ -227,31 +216,8 @@
                     url: Yarsha.config.base_url + 'project/ajax/searchMember',
                     data: {q:val, p:project},
                     success: function(response){
-
                         var data = $.parseJSON(response);
-                        console.log(data);
-
-                        if( data.length > 0 )
-                        {
-                            var html = '';
-                            $.each(data, function(i, v)
-                            {
-                                html = html + '<li data-user="'+ v.id+'" data-project="'+ project +'" onclick="addMember(this)" >';
-                                html = html + '<div class="col-md-12">';
-
-                                html = html + v.image;
-                                html = html + v.name + '<br />';
-                                html = html + v.email;
-
-                                html = html + '</div>';
-                                html = html + '</li>';
-
-
-                            });
-                            resultList.html(html);
-                        }else{
-                            resultList.html('');
-                        }
+                        resultList.html(data.html);
                     },
                     error: function(error){
                         console.log(error);
@@ -261,36 +227,12 @@
         }); // Member search action
 
 
-        $('.selectMember').bind('click', function(){
-            console.log('clicked');
-            var _self = $(this),
-                user = _self.data('user'),
-                project = _self.data('project')
-                ;
-
-            $.ajax({
-                type: 'post',
-                data: {user:user, project:project},
-                url: Yarsha.config.base_url + 'project/ajax/addMember',
-                success: function(response)
-                {
-                    var data = $.parseJSON(response);
-                    console.log(data);
-                }
-            });
-
-
-        });
-
-
     });
 
     function addMember(obj){
         var _self = $(obj),
             user = _self.data('user'),
-            project = _self.data('project')
-        ;
-
+            project = _self.data('project');
         $.ajax({
             type: 'post',
             data: {user:user, project:project},
@@ -298,10 +240,10 @@
             success: function(response)
             {
                 var data = $.parseJSON(response);
-                console.log(data);
                 if( data.status && data.status == 'success'){
                     $('.projectMembers .row').prepend($(data.member));
                     _self.remove();
+                    $('.no-member-info').remove();
                 }
             }
         });

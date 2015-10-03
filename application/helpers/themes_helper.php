@@ -135,4 +135,39 @@ function getImageTag($src, $attr = array()){
 
     return '<img class="img-responsive" src="'.$src.'" '.$attributes.' />';
 }
+
+function getMemberListElement($member){
+    $memberName = $member->getFullname();
+    $out = '<div class="col-md-2 m-wrap">';
+    $out .= getImageTag(
+        $member->getGravatar(200, 'wavatar'),
+        [
+            'data-toggle'=> 'tooltip',
+            'data-placement'=> 'bottom',
+            'title'=> $memberName.'<br />'.$member->getEmail()
+        ]
+    );
+    $out .= '<br />'.$memberName;
+    $out .= '</div>';
+    return $out;
+}
+
+function getMemberSearchResultListElement($members, $project = ''){
+    $out = '';
+
+    foreach($members as $u){
+        $out .= '<li data-user="'.$u->id().'" data-project="'.$project.'" onclick="addMember(this)" >';
+        $out .= '<div class="col-md-12">';
+
+        $out .= getImageTag($u->getGravatar('30'));
+        $out .= $u->getFullname() . '<br />';
+        $out .= $u->getEmail();
+
+        $out .= '</div>';
+        $out .= '</li>';
+    }
+
+    return $out;
+}
+
 ?>
