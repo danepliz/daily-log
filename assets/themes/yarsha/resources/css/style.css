@@ -225,12 +225,14 @@ a.readmore{
 }
 
 #searchMemberTextBox{
-    width: 100%;
-    padding: 0 1em;
+    width: 96%;
     border: none;
     border-bottom: 1px solid #ccc;
-    background: none !important;
+    background: none!important;
     font-style: italic;
+    margin: 1em 1em 0 1em;
+    padding: 1em 2%;
+    font-family: source-sans-pro;
 }
 
 . member-modal .modal-content{
@@ -250,4 +252,61 @@ a.readmore{
 
 .member-modal .left{
     border-right: 1px #ccc solid !important;
+}
+
+.projectMembers{
+    padding: 1em;
+    text-align: center;
+}
+
+.projectMembers .row{
+    margin: 1em;
+    padding: 1em;
+    border: 1px dotted #ccc;
+    border-radius: 1em;
+}
+
+.projectMembers img{
+    border:1px #ccc solid;
+    width: 100%;
+    float: left;
+    border-radius: 50%;
+}
+
+.projectMembers .m-wrap{
+    position: relative;
+}
+
+.projectMembers .m-d-wrap{
+    position: absolute;
+    text-align: center;
+    bottom:10px
+}
+
+.searchedMemberList{
+    width:96%;
+    margin: 0 1em;
+    padding: 0 2%;
+    list-style: none;
+
+}
+
+.searchedMemberList li{
+    display: block;
+    float: left;
+    font-family: source-sans-pro;
+    width: 100%;
+    padding: 1em 0;
+    line-height: 1em;
+    border-bottom: 1px dashed #CCC;
+    cursor: pointer;
+}
+
+.searchedMemberList li:hover{
+    background: #CCC;
+}
+
+.searchedMemberList li img{
+    float: left;
+    margin-right: 1em;
 }

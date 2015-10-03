@@ -37,20 +37,37 @@ class ProjectRepository extends EntityRepository
 
     public function searchForMembers($query, $project = NULL){
 
-        $sql = "SELECT u.id as user_id, u.email as email, u.fullname as name FROM user\models\User u WHERE u.status = 1 ";
+        $qb = $this->_em->createQueryBuilder();
+        $qb2 = $this->_em->createQueryBuilder();
 
-        $sql .= " AND ( u.fullname LIKE '%$query%' OR u.email LIKE '%$query%' ) ";
+        $qb->select('u')
+            ->from('user\models\User' , 'u')
+            ->where('u.status = 1');
+
+        $qb->andWhere(
+            $qb->expr()->orX(
+                $qb->expr()->like('u.fullname', $qb->expr()->literal('%'.$query.'%')),
+                $qb->expr()->like('u.email', $qb->expr()->literal('%'.$query.'%'))
+            )
+        );
 
 //        if($project){
-//            $sql .= " AND u.id NOT IN ( SELECT m.user_id FROM ys_project_members m WHERE m.project_id = 1) ";
+//
+//            $qb->andWhere(
+//                $qb->expr()->notIn(
+//                    'u.id',
+//                    $qb2->select('m.id')
+//                        ->from('project\models\Project', 'p')
+//                        ->leftJoin('p.members', 'm')
+//                        ->where('p.id = '.$project)
+//                        ->getDQL()
+//                )
+//            );
+//
 //        }
 
-        $dql = $this->_em->createQuery($sql);
-
-
-        return $dql->getScalarResult();
-
-
+//        echo $qb->getQuery()->getSQL();
+        return $qb->getQuery()->getResult();
     }
 
 

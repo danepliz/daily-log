@@ -20,6 +20,7 @@
         <?php if(user_access('edit project')) {  ?>
         <a href="<?php echo site_url('project/add/'.$project->slug()) ?>" title="Edit Project"><i class="fa fa-pencil"></i> Edit</a>
         <?php } ?>
+        <a href="#" data-target="#addMemberModal" data-toggle="modal" ><i class="fa fa-users"></i> Members</a>
     </div>
 
     <div class="col-md-12">
@@ -132,73 +133,7 @@
 
 
 <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
-<!--    <div class="row">-->
 
-        <h2 class="blog-title">Team Members</h2>
-        <div class="col-md-12">
-            <div class="row">
-                <?php
-                if(count($project->getMembers())){
-                    foreach($project->getMembers() as $member){
-                        $memberName = $member->getFullname();
-                        echo '<div class="col-md-2">';
-                        echo getImageTag($member->getGravatar(100), [ 'style'=>'width:100%; float:left;', 'alt'=> $memberName, 'alt'=> $memberName ]);
-                        echo '</div>';
-                    }
-                }else{
-                    echo '<div class="col-m d-12">No Members Added</div>';
-                }
-                ?>
-            </div>
-        </div>
-
-        <ul class="list-unstyled">
-<!--            <li><a href="#" ><i class="fa fa-angle-double-right"></i>View Details</a></li>-->
-            <li><a href="#" data-target="#addMemberModal" data-toggle="modal" ><i class="fa fa-plus"></i> Add Member</a></li>
-        </ul>
-
-        <div class="modal fade member-modal" id="addMemberModal">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-<!--                    <div class="modal-header">-->
-<!--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-<!--                        <h4 class="modal-title">Project Members</h4>-->
-<!--                    </div>-->
-                    <div class="modal-body" style="min-height:200px">
-                        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 box left">
-                            <div class="row">
-                                <input type="text" id="searchMemberTextBox" placeholder="Type to search member..."/>
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 box">
-                            <div class="row">
-                                <?php
-                                if(count($project->getMembers())){
-                                    foreach($project->getMembers() as $member){
-                                        $memberName = $member->getFullname();
-                                        echo '<div class="col-md-2">';
-                                        echo getImageTag($member->getGravatar(100), [ 'style'=>'width:100%; float:left;', 'alt'=> $memberName, 'alt'=> $memberName ]);
-                                        echo '<br />'.$memberName;
-                                        echo '</div>';
-                                    }
-                                }else{
-                                    echo '<div class="col-m d-12">No Members Added</div>';
-                                }
-                                ?>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-<!--                    <div class="modal-footer">-->
-<!---->
-<!--                    </div>-->
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="clearfix box-separator"></div>
 
         <h2 class="blog-title">SUB PROJECT LISTS</h2>
         <ul class="list-unstyled project_files myList">
@@ -222,6 +157,56 @@
 <!--    </div>-->
 </div>
 
+<div class="modal fade member-modal" id="addMemberModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!--                    <div class="modal-header">-->
+            <!--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+            <!--                        <h4 class="modal-title">Project Members</h4>-->
+            <!--                    </div>-->
+            <div class="modal-body" style="min-height:250px">
+                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <input type="text" id="searchMemberTextBox" placeholder="Type to search member..."/>
+                        <ul class="searchedMemberList" id="searchedMemberList">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 projectMembers">
+                    <h2>Project Members</h2>
+                    <div class="row">
+                        <?php
+                        if(count($project->getMembers())){
+                            foreach($project->getMembers() as $member){
+                                $memberName = $member->getFullname();
+                                echo '<div class="col-md-2 m-wrap">';
+                                echo getImageTag(
+                                    $member->getGravatar(200, 'wavatar'),
+                                    [
+                                        'data-toggle'=> 'tooltip',
+                                        'data-placement'=> 'bottom',
+                                        'title'=> $memberName.'<br />'.$member->getEmail()
+                                    ]
+                                );
+                                echo '<br />'.$memberName;
+                                echo '</div>';
+                            }
+                        }else{
+                            echo '<div class="col-m d-12">No Members Added</div>';
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--                    <div class="modal-footer">-->
+            <!---->
+            <!--                    </div>-->
+        </div>
+    </div>
+</div>
+
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -230,31 +215,97 @@
         $('#searchMemberTextBox').bind('keyup', function(){
             var _self = $(this),
                 val = _self.val(),
-                valLength = val.length;
+                valLength = val.length,
+                resultList = $('#searchedMemberList'),
+                project = <?php echo $project->id() ?>;
 
-            console.log(valLength);
-
-            if( valLength > 1){
+            if(valLength < 1){
+                resultList.html('');
+            }else{
                 $.ajax({
                     type: 'post',
                     url: Yarsha.config.base_url + 'project/ajax/searchMember',
-                    data: {q:val, p:<?php echo $project->id() ?>},
+                    data: {q:val, p:project},
                     success: function(response){
+
                         var data = $.parseJSON(response);
                         console.log(data);
+
+                        if( data.length > 0 )
+                        {
+                            var html = '';
+                            $.each(data, function(i, v)
+                            {
+                                html = html + '<li data-user="'+ v.id+'" data-project="'+ project +'" onclick="addMember(this)" >';
+                                html = html + '<div class="col-md-12">';
+
+                                html = html + v.image;
+                                html = html + v.name + '<br />';
+                                html = html + v.email;
+
+                                html = html + '</div>';
+                                html = html + '</li>';
+
+
+                            });
+                            resultList.html(html);
+                        }else{
+                            resultList.html('');
+                        }
                     },
                     error: function(error){
                         console.log(error);
                     }
                 });
             }
+        }); // Member search action
 
+
+        $('.selectMember').bind('click', function(){
+            console.log('clicked');
+            var _self = $(this),
+                user = _self.data('user'),
+                project = _self.data('project')
+                ;
+
+            $.ajax({
+                type: 'post',
+                data: {user:user, project:project},
+                url: Yarsha.config.base_url + 'project/ajax/addMember',
+                success: function(response)
+                {
+                    var data = $.parseJSON(response);
+                    console.log(data);
+                }
+            });
 
 
         });
 
 
     });
+
+    function addMember(obj){
+        var _self = $(obj),
+            user = _self.data('user'),
+            project = _self.data('project')
+        ;
+
+        $.ajax({
+            type: 'post',
+            data: {user:user, project:project},
+            url: Yarsha.config.base_url + 'project/ajax/addMember',
+            success: function(response)
+            {
+                var data = $.parseJSON(response);
+                console.log(data);
+                if( data.status && data.status == 'success'){
+                    $('.projectMembers .row').prepend($(data.member));
+                    _self.remove();
+                }
+            }
+        });
+    }
 </script>
 
 

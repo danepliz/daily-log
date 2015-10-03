@@ -391,6 +391,7 @@ class User
      * @source http://gravatar.com/site/implement/images/php/
      */
     public function getGravatar( $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+//        $d = image_url('equalsto.png');
         $url = 'http://www.gravatar.com/avatar/';
         $url .= md5( strtolower( trim( $this->email ) ) );
         $url .= "?s=$s&d=$d&r=$r";
