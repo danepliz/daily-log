@@ -151,12 +151,14 @@ class User
         $CI = \CI::$APP;
         $CI->load->library('password');
         $hashed = $CI->password->create_hash($password);
-        $this->setSalt($hashed['salt']);
-	    $this->setSecrete($hashed['hash']);
+        $this->setSalt($hashed['salt'])
+            ->setSecrete($hashed['hash']);
 	}
 
     public function setSalt($salt){
         $this->salt = $salt;
+
+        return $this;
     }
 
     public function getSalt(){
@@ -165,6 +167,8 @@ class User
 
     public function setToken(){
         $this->token = md5(microtime());
+
+        return $this;
     }
 
     public function getToken(){
@@ -179,6 +183,8 @@ class User
 	public function setFullName($fullName)
 	{
 	    $this->fullname = ucwords($fullName);
+
+        return $this;
 	}
 
 	public function getAddress()
@@ -189,6 +195,8 @@ class User
 	public function setAddress($address)
 	{
 	    $this->address = $address;
+
+        return $this;
 	}
 
 	public function getPhone()
@@ -199,6 +207,8 @@ class User
 	public function setPhone($phone)
 	{
 	    $this->phone = $phone;
+
+        return $this;
 	}
 
 	public function getMobile()
@@ -209,6 +219,8 @@ class User
 	public function setMobile($mobile)
 	{
 	    $this->mobile = $mobile;
+
+        return $this;
 	}
 
 	public function getEmail()
@@ -219,6 +231,8 @@ class User
 	public function setEmail($email)
 	{
 	    $this->email = $email;
+
+        return $this;
 	}
 
 	public function isActive()
@@ -229,10 +243,14 @@ class User
 	public function activate()
 	{
 	    $this->status = self::USER_STATUS_ACTIVE;
+
+        return $this;
 	}
 	
 	public function deactivate(){
 		$this->status = self::USER_STATUS_BLOCKED;
+
+        return $this;
 	}
 
     public function isDeleted()
@@ -242,6 +260,8 @@ class User
 
     public function markAsDeleted(){
         $this->status = self::USER_STATUS_DELETED;
+
+        return $this;
     }
 
 	public function getGroup()
@@ -252,6 +272,8 @@ class User
 	public function setGroup(Group $group)
 	{
 	    $this->group = $group;
+
+        return $this;
 	}
 
 	public function getCreated()
@@ -263,41 +285,61 @@ class User
     	return $this->api_key;
     }
 
-    public function setApiKey($api_key){
-    	
-    	$this->api_key = $api_key;
+    public function setApiKey($api_key)
+    {
+        $this->api_key = $api_key;
+
+        return $this;
     }
     
-    public function isFirstLogin(){
+    public function isFirstLogin()
+    {
     	return $this->first_login;
     }
     
-    public function unMarkFirstLogin(){
-    	$this->first_login = FALSE;	
+    public function unMarkFirstLogin()
+    {
+    	$this->first_login = FALSE;
+
+        return $this;
     }
     
-    public function markFirstLogin(){
+    public function markFirstLogin()
+    {
     	$this->first_login = TRUE;
+
+        return $this;
     }
     
-    public function pwdLastChangedOn(){
+    public function pwdLastChangedOn()
+    {
     	return $this->pwd_change_on;
     }
     
-    public function setPwdLastChangedOn(){
+    public function setPwdLastChangedOn()
+    {
     	$this->pwd_change_on = new \DateTime();
+
+        return $this;
     }
     
-    public function setLastLogged(){
+    public function setLastLogged()
+    {
     	$this->last_logged = new \DateTime();
+
+        return $this;
     }
     
-    public function getLastLogged(){
+    public function getLastLogged()
+    {
     	return $this->last_logged;
     }
 
-    public function unsetAgent(){
+    public function unsetAgent()
+    {
     	$this->agent = NULL;
+
+        return $this;
     }
 
     public function getResetToken()
@@ -308,6 +350,8 @@ class User
     public function setResetToken($resetToken)
     {
         $this->resetToken = $resetToken;
+
+        return $this;
     }
 
     public function getTokenRequested()
@@ -318,6 +362,8 @@ class User
     public function setTokenRequested($tokenRequested)
     {
         $this->tokenRequested = $tokenRequested;
+
+        return $this;
     }
 
     public function getTokenUsed()
@@ -328,6 +374,33 @@ class User
     public function setTokenUsed($tokenUsed)
     {
         $this->tokenUsed = $tokenUsed;
+
+        return $this;
+    }
+
+    /**
+     * Get either a Gravatar URL or complete image tag for a specified email address.
+     *
+     * @param string $email The email address
+     * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
+     * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
+     * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
+     * @param boole $img True to return a complete IMG tag False for just the URL
+     * @param array $atts Optional, additional key/value attributes to include in the IMG tag
+     * @return String containing either just a URL or a complete image tag
+     * @source http://gravatar.com/site/implement/images/php/
+     */
+    public function getGravatar( $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+        $url = 'http://www.gravatar.com/avatar/';
+        $url .= md5( strtolower( trim( $this->email ) ) );
+        $url .= "?s=$s&d=$d&r=$r";
+        if ( $img ) {
+            $url = '<img src="' . $url . '"';
+            foreach ( $atts as $key => $val )
+                $url .= ' ' . $key . '="' . $val . '"';
+            $url .= ' />';
+        }
+        return $url;
     }
 
 }

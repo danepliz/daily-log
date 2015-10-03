@@ -124,4 +124,15 @@ function locateIcon( $image ){
 function image_url($string = ''){
     return theme_url().'resources/images/'.$string;
 }
+
+function getImageTag($src, $attr = array()){
+    $attributes = '';
+    if(count($attr)){
+        foreach($attr as $key => $val){
+            $attributes .= $key .'="' . $val . '" ';
+        }
+    }
+
+    return '<img class="img-responsive" src="'.$src.'" '.$attributes.' />';
+}
 ?>

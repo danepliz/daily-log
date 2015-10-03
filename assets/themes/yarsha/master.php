@@ -70,7 +70,8 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle top-profile-pic" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <?php
-                                    echo Current_User::user()->getFullName();
+                                    $currentUser = Current_User::user();
+                                    echo "<img src='".$currentUser->getGravatar(30)."' alt='".$currentUser->getFullname()."' title='".$currentUser->getFullName()."' />";
                                 ?>
                                 <span class="caret"></span>
                             </a>

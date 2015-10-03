@@ -137,28 +137,62 @@
         <h2 class="blog-title">Team Members</h2>
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-2">
-                    <img class="img-responsive" width="100" style="width:100%; float:left;" src="<?php echo image_url('profile-pic.jpg') ?>" alt=""/>
-                </div>
-                <div class="col-md-2">
-                    <img class="img-responsive" width="100" style="width:100%; float:left;" src="<?php echo image_url('profile-pic.jpg') ?>" alt=""/>
-                </div>
-                <div class="col-md-2">
-                    <img class="img-responsive" width="100" style="width:100%; float:left;" src="<?php echo image_url('profile-pic.jpg') ?>" alt=""/>
-                </div>
-                <div class="col-md-2">
-                    <img class="img-responsive" width="100" style="width:100%; float:left;" src="<?php echo image_url('profile-pic.jpg') ?>" alt=""/>
-                </div>
-                <div class="col-md-2">
-                    <img class="img-responsive" width="100" style="width:100%; float:left;" src="<?php echo image_url('profile-pic.jpg') ?>" alt=""/>
-                </div>
+                <?php
+                if(count($project->getMembers())){
+                    foreach($project->getMembers() as $member){
+                        $memberName = $member->getFullname();
+                        echo '<div class="col-md-2">';
+                        echo getImageTag($member->getGravatar(100), [ 'style'=>'width:100%; float:left;', 'alt'=> $memberName, 'alt'=> $memberName ]);
+                        echo '</div>';
+                    }
+                }else{
+                    echo '<div class="col-m d-12">No Members Added</div>';
+                }
+                ?>
             </div>
         </div>
 
         <ul class="list-unstyled">
-            <li><a href="#" ><i class="fa fa-angle-double-right"></i>View Details</a></li>
-            <li><a href="#" ><i class="fa fa-plus"></i>Add Member</a></li>
+<!--            <li><a href="#" ><i class="fa fa-angle-double-right"></i>View Details</a></li>-->
+            <li><a href="#" data-target="#addMemberModal" data-toggle="modal" ><i class="fa fa-plus"></i> Add Member</a></li>
         </ul>
+
+        <div class="modal fade" id="addMemberModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Project Members</h4>
+                    </div>
+                    <div class="modal-body" style="min-height:200px">
+                        <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                            <select name="member" id="memberSelect" class="form-control">
+                                <option value="">-- find users --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
+                            <?php
+                            if(count($project->getMembers())){
+                                foreach($project->getMembers() as $member){
+                                    $memberName = $member->getFullname();
+                                    echo '<div class="col-md-2">';
+                                    echo getImageTag($member->getGravatar(100), [ 'style'=>'width:100%; float:left;', 'alt'=> $memberName, 'alt'=> $memberName ]);
+                                    echo '<br />'.$memberName;
+                                    echo '</div>';
+                                }
+                            }else{
+                                echo '<div class="col-m d-12">No Members Added</div>';
+                            }
+                            ?>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
