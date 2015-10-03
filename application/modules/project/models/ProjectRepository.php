@@ -35,4 +35,23 @@ class ProjectRepository extends EntityRepository
     }
 
 
+    public function searchForMembers($query, $project = NULL){
+
+        $sql = "SELECT u.id as user_id, u.email as email, u.fullname as name FROM user\models\User u WHERE u.status = 1 ";
+
+        $sql .= " AND ( u.fullname LIKE '%$query%' OR u.email LIKE '%$query%' ) ";
+
+//        if($project){
+//            $sql .= " AND u.id NOT IN ( SELECT m.user_id FROM ys_project_members m WHERE m.project_id = 1) ";
+//        }
+
+        $dql = $this->_em->createQuery($sql);
+
+
+        return $dql->getScalarResult();
+
+
+    }
+
+
 }

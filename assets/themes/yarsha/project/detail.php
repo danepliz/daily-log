@@ -157,39 +157,41 @@
             <li><a href="#" data-target="#addMemberModal" data-toggle="modal" ><i class="fa fa-plus"></i> Add Member</a></li>
         </ul>
 
-        <div class="modal fade" id="addMemberModal">
+        <div class="modal fade member-modal" id="addMemberModal">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Project Members</h4>
-                    </div>
+<!--                    <div class="modal-header">-->
+<!--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+<!--                        <h4 class="modal-title">Project Members</h4>-->
+<!--                    </div>-->
                     <div class="modal-body" style="min-height:200px">
-                        <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                            <select name="member" id="memberSelect" class="form-control">
-                                <option value="">-- find users --</option>
-                            </select>
+                        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 box left">
+                            <div class="row">
+                                <input type="text" id="searchMemberTextBox" placeholder="Type to search member..."/>
+                            </div>
                         </div>
-                        <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
-                            <?php
-                            if(count($project->getMembers())){
-                                foreach($project->getMembers() as $member){
-                                    $memberName = $member->getFullname();
-                                    echo '<div class="col-md-2">';
-                                    echo getImageTag($member->getGravatar(100), [ 'style'=>'width:100%; float:left;', 'alt'=> $memberName, 'alt'=> $memberName ]);
-                                    echo '<br />'.$memberName;
-                                    echo '</div>';
+                        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 box">
+                            <div class="row">
+                                <?php
+                                if(count($project->getMembers())){
+                                    foreach($project->getMembers() as $member){
+                                        $memberName = $member->getFullname();
+                                        echo '<div class="col-md-2">';
+                                        echo getImageTag($member->getGravatar(100), [ 'style'=>'width:100%; float:left;', 'alt'=> $memberName, 'alt'=> $memberName ]);
+                                        echo '<br />'.$memberName;
+                                        echo '</div>';
+                                    }
+                                }else{
+                                    echo '<div class="col-m d-12">No Members Added</div>';
                                 }
-                            }else{
-                                echo '<div class="col-m d-12">No Members Added</div>';
-                            }
-                            ?>
+                                ?>
+                            </div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="modal-footer">
-
-                    </div>
+<!--                    <div class="modal-footer">-->
+<!---->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -221,6 +223,39 @@
 </div>
 
 
+<script type="text/javascript">
+    $(document).ready(function(){
+
+
+        $('#searchMemberTextBox').bind('keyup', function(){
+            var _self = $(this),
+                val = _self.val(),
+                valLength = val.length;
+
+            console.log(valLength);
+
+            if( valLength > 1){
+                $.ajax({
+                    type: 'post',
+                    url: Yarsha.config.base_url + 'project/ajax/searchMember',
+                    data: {q:val, p:<?php echo $project->id() ?>},
+                    success: function(response){
+                        var data = $.parseJSON(response);
+                        console.log(data);
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            }
+
+
+
+        });
+
+
+    });
+</script>
 
 
 
