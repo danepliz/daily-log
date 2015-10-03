@@ -120,15 +120,6 @@
             </li>
         </ul>
     </div>
-
-    <?php if( count($project->getMeta())){  ?>
-        <?php foreach($project->getMeta() as $meta){ ?>
-            <div class="col-md-4 col-sm-12 col-xs-12">
-                <label><?php echo $meta->getMetaKey() ?></label><br>
-                <span><?php echo $meta->getMetaValue() ?></span>
-            </div>
-        <?php } ?>
-    <?php } ?>
 </div>
 
 
